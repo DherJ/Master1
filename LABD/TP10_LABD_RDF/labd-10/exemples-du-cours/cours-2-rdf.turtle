@@ -1,0 +1,36 @@
+@prefix ns0: <http://www.labd.org/2015/cours/schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://www.labd.org/2015/cours/data#etud01>
+  a <http://www.labd.org/2015/cours/schema#Etudiant> ;
+  ns0:nom "Pierre Dupont" .
+
+<http://www.labd.org/2015/cours/data#jcr>
+  ns0:nom "Jean-Christophe Routier" ;
+  a ns0:Enseignant .
+
+<http://www.labd.org/2015/cours/data#TW2>
+  a ns0:Cours ;
+  ns0:nom "Techonolgies du Web 2" ;
+  ns0:estSuiviPar <http://www.labd.org/2015/cours/data#L3S4> ;
+  ns0:aCommeEnseignant <http://www.labd.org/2015/cours/data#jcr> .
+
+<http://www.labd.org/2015/cours/data#POO>
+  ns0:nom "Programmation Orientée Objets" ;
+  a ns0:Cours ;
+  ns0:estSuiviPar <http://www.labd.org/2015/cours/data#L3S4> ;
+  ns0:aCommeEnseignant <http://www.labd.org/2015/cours/data#jcr> .
+
+<http://www.labd.org/2015/cours/data#etud03>
+  ns0:nom "Marie Martin" ;
+  a ns0:Etudiant .
+
+<http://www.labd.org/2015/cours/data#classeIST>
+  a rdf:Seq ;
+  rdf:_3 <http://www.labd.org/2015/cours/data#etud03> ;
+  rdf:_1 <http://www.labd.org/2015/cours/data#etud01> ;
+  rdf:_2 <http://www.labd.org/2015/cours/data#etud02> .
+
+<http://www.labd.org/2015/cours/data#etud02>
+  a ns0:Etudiant ;
+  ns0:nom "Alain Durand" .

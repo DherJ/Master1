@@ -1,0 +1,33 @@
+@prefix conc:<http://www.labd.com/exo1/concepts> .
+@prefix inst:<http://www.labd.com/exo1/instances> .
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+@prefix ns0: <http://www.labd.org/2015/nodes#> .
+
+
+<http://www.labd.org/2015/nodes/containers> ns0:cont  [
+	a rdf:Seq;
+	rdf:_1 "a" ;
+	rdf:_2 "b" ;
+	rdf:_3 "c" ;
+	rdf:_4 "d" ;
+] .
+
+
+<http://www.labd.org/2015/nodes/lists>  ns0:list [
+	rdf:first "a" ;
+	rdf:rest [ 
+				rdf:first "b" ;
+				 rdf:rest [
+								rdf:first "c" ;
+								rdf:rest [ 
+											 rdf:first "d" ;
+											 rdf:rest rdf:nil 
+											]
+							]
+				]
+] .
+
+<http://www.labd.org/2015/nodes/lists>  ns0:list ( "a" "b" "c" "d" ) .

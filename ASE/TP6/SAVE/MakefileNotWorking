@@ -1,0 +1,23 @@
+# KNAPIK Christopher - DHERSIN Jérome 
+# TP5 ASE - 21 octobre 2014
+
+
+
+# compilation complète
+TP5ASE: drive.o dmps.o
+	gcc -g -m32 -o TP5ASE drive.o dmps.o
+
+dmps.o : dmps.c dmps.h
+	gcc -g -m32 -o dmps.o -c dmps.c
+
+drive.o: drive.c drive.h dmps.h dmps.c hardware.h
+	gcc -g -m32 -o drive.o -c drive.c
+
+ 
+# clean
+clean:
+	rm -rf *.bak rm -rf *.o
+ 
+# cleanall
+cleanall: clean
+	rm -rf TP5ASE

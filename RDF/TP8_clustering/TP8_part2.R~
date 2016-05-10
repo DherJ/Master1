@@ -1,0 +1,46 @@
+library("MASS")
+library("lattice")
+source ('rdfSegmentation.R')
+
+# im1 <- rdfReadGreyImage ("rdf-2-classes-texture-1.png")
+# im2 <- rdfReadGreyImage ("rdf-2-classes-texture-1-text.png")
+
+# Q2.1
+rdfAfficheObs <- function (im1, im2)
+{
+	M <- cbind (as.vector(im1), as.vector(im2))
+
+	plot (M, col = 'black')
+}
+
+
+# Q2.2
+rdfKmeansNoInit <- function (im1, im2)
+{
+	M <- cbind (as.vector(im1), as.vector(im2))
+	
+	km <- kmeans (M, 2, 30)
+
+	couleur <- rep('blue', 3)
+	couleur[km$cluster == 1] = 'blue'
+	couleur[km$cluster == 2] = 'green'
+
+	plot (M, col = couleur)
+	centers_aff <- cbind (km$centers[,1], km$centers[,2])
+	points (centers_aff, col = 'red', pch = 8)
+}
+
+
+
+# Q2.3
+rdfBinarisationKmeans <- function (im1, im2)
+{
+	M <- cbind (as.vector(im1), as.vector(im2))
+	
+	km <- kmeans (M, 2, 50)
+
+	display ('Image binaire', array(km$cluster==1, dim = c(128,128)))
+	display (array(km$cluster==2, dim = c(128,128), 'Image binaire'))	
+}
+
+

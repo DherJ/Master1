@@ -1,0 +1,6 @@
+SELECT ?x ?t
+WHERE
+{ 
+ ?x rdf:type ?t
+ FILTER regex (?x, "John"  )
+}

@@ -1,0 +1,65 @@
+#################
+#		Exercice 1		#
+#################
+
+
+
+Pour lire un secteur (secteur	c s), il faut utiliser la liste de commandes matérielles suivantes :
+1 - SEEK		~ mettre c s -> HDA_DATAREGS
+						octet poids fort C -> HDA_CMDREG
+						octet poids faible C -> HDA_CMDREG+1
+				~ mettre CMD_SEEK -> HDA_CMDREG
+				~ attente HDA_IRQ
+
+2 - READ		~ mettre 1 -> HDA_DATAREG
+				~ CMD_READ -> HDA_CMDREG
+				~ attente HDA_IRQ
+
+3 - exploiter les données HDA_MASTER_BUFFER
+
+en C :
+
+1 -
+
+static go_to_sector(c,s) {
+	// Vérifier C et S
+	_out(HDA_DATAREG, (c>>8) &0xFF);
+	_out(HDA_DATAREG+1, c &0xFF);
+	_out(HDA_DATAREG+2, (s>>8) &0xFF);
+	_out(HDA_DATAREG+3, s &0xFF);
+	_out(HDA_CMDREG, CMD_SEEK);
+	_sleep(HDA_IRQ);
+
+
+3 -
+
+	out(HDACMDREG, CMD_DSKNFO);
+	int sector.size = _in(HDA_DATAREGS+4) <<8 + _in(HDA_DATAREGS+5);
+
+	#define SECTOR_SIZE 1024
+	static int check_hda()
+		- lire via DSKNFO variable sector_size
+		- vérifier sector_size == SECTOR_SIZE sinon -> recompiler avec SECTOR_SIZE=...
+
+
+
+dmps.c 
+	Affiche un sector
+
+drive.c
+
+drive.h
+	check_hda()
+	read_sector(c, s, char* buffer)
+	read_sector(c, s, n, char* buffer)	
+	write_sector()
+	write_sector_n()
+	format_sector()
+
+	static go_to_sector(c, s)
+
+main() 
+	char buffer[SECTOR_SIZE]
+	read_sector(0, 0, buffer)
+	print_buffer(buffer, SECTOR_SIZE)
+	

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+
+	<xs:complexType name="tChamp">
+
+		<xs:sequence>
+
+			<xs:element name="journee" type="tJournee" minOccurs = "0" maxOccurs = "38"/>
+
+		</xs:sequence>
+
+	</xs:complexType>
+
+	
+
+	<xs:complexType name="tJournee">
+
+		<xs:sequence>
+
+			<xs:element name="recontre" type="tRencontre" minOccurs = "0" maxOccurs = "10"/>
+
+		</xs:sequence>
+
+		<xs:attribute name="date" type="xs:date" />
+
+	</xs:complexType>
+
+	
+
+	<xs:complexType name="tRencontre">
+
+		<xs:attribute name="domcile" type="xs:string" />
+
+		<xs:attribute name="exterieur" type="xs:string" />
+
+		<xs:attribute name="scoreD" type="xs:integer" />
+
+		<xs:attribute name="scoreE" type="xs:integer" />
+
+	</xs:complexType>
+
+
+	<xs:element name="championnat" type="tChamp" />
+
+	<xs:element name="journee" type="tJournee" />
+
+	
+<xs:element name="rencontre" type="tRencontre" />
+
+
+</xs:schema>

@@ -1,0 +1,48 @@
+#------------------ MAKEFILE TP-Problemes-NP ------------------#
+#  			Dhersin Jerome                                     #
+# 			Knapik Christopher                                 #
+#  			Master 1 informatique                              #
+#  			02/12/2014                                         #
+#--------------------------------------------------------------#
+
+JFLAGS = -g
+JC = javac
+JVM = java
+JDOC = javadoc
+FILE=
+.SUFFIXES: .java .class
+.java.class:
+	$(JC) $(JFLAGS) src/$*.java
+SRC = \
+	src/Solve.java \
+	src/PblBinPack.java \
+	src/PblDec.java \
+	src/PblPartition.java \
+	src/Certificat.java \
+	src/CertificatBinPack.java 
+
+CLASSES = \
+	bin/Solve.class \
+	bin/PblBinPack.class \
+	bin/PblDec.class \
+	bin/PblPartition.class \
+	bin/Certificat.class \
+	bin/CertificatBinPack.class 
+	
+SOLVE = bin/Solve
+
+default: classes doc
+
+classes: $(CLASSES:src/.java=bin/.class)
+
+run: $(SOLVE).class
+	$(JVM) $(CLASSES)
+
+# generer la javadoc
+doc: $(CLASSES)
+	mkdir -p doc
+	$(JDOC) $(JDOCFLAGS) -d doc $(SRC)
+	
+clear:
+	$(RM) $(CLASSES)
+	$(RM) -f doc/*

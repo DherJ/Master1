@@ -1,0 +1,157 @@
+package tp.main;
+
+public class Game {
+	
+	private static int MAX;
+	private int m, n, i, j;
+	int score = 0;
+	int nbCoupsBot = 0;
+	private int nbCoupsJoueur = 0;
+	private int[][][][] tab; 
+	private boolean bot = true;
+	private GameFrame frame;
+	
+	public Game(int _m, int _n, int _i, int _j) {
+		m = _m;
+		n = _n;
+		i = _i;
+		j = _j;
+		
+		MAX = Math.max(m, n) + 1;
+		
+		tab = new int[MAX][MAX][MAX][MAX];
+		frame = new GameFrame(this);
+//		Tablet test = new Tablet(m, n, i, j, tab);
+//		long begin = System.nanoTime();
+//		int resultNoSym = test.noSym(m, n, i, j);
+//		long end = System.nanoTime();
+//		System.out.println("Dynamic whitout sym: " + resultNoSym + "\ttime: " + ((end-begin)*Math.pow(10, -6)) + "ms" + " \tcmpt:" + test.getCmpNoSym());
+//		
+//		tab2 = new int[MAX][MAX][MAX][MAX];
+//		Tablet test2 = new Tablet(m, n, i, j, tab2);
+//		begin = System.nanoTime();
+//		int resultWithSym = test2.withSym(m, n, i, j);
+//		end = System.nanoTime();
+//		System.out.println("Dynamic with sym: " + resultWithSym + "\ttime: " + ((end-begin)*Math.pow(10, -6)) + "ms" + " \tcmpt:" + test2.getCmpSym());
+//		
+//		begin = System.nanoTime();
+//		int resultWithNaive = test2.f(m, n, i, j);
+//		end = System.nanoTime();
+//		System.out.println("Naive: " + resultWithNaive + "\ttime: " + ((end-begin)*Math.pow(10, -6)) + "ms" + " \tcmpt:" + test2.getCmp());
+	}
+	
+	
+	public void beginGame() {
+		while(true){
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			if(m == 1 && n == 1) {
+				System.out.print(m + "&" + n);
+				if(bot)
+					frame.congrats(true);
+				else 
+					frame.congrats(false);
+				
+				frame.dispose();
+				break;
+			} else {
+				if(bot) {
+					this.setNbCoupsBot(this.getNbCoupsBot() + 1);
+					doBotBestMove();
+				}
+			}
+		}
+	}
+
+	public void doBotBestMove() {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		Tablet currentTable = new Tablet(m,n,i,j, tab);
+		Quadruple bestMove = currentTable.getBestMoveWithSym(m, n, i, j);
+		this.setScore(tab[bestMove.getM()][bestMove.getN()][bestMove.getI()][bestMove.getJ()]);
+		setM(bestMove.getM());
+		setN(bestMove.getN());
+		setI(bestMove.getI());
+		setJ(bestMove.getJ());
+		bot = false;
+		frame.refresh(this);
+	}
+
+	public int getM() {
+		return m;
+	}
+
+	public void setM(int _m) {
+		this.m = _m;
+	}
+
+	public int getN() {
+		return n;
+	}
+
+	public void setN(int _n) {
+		this.n = _n;
+	}
+
+	public int getI() {
+		return i;
+	}
+
+	public void setI(int _i) {
+		this.i = _i;
+	}
+
+	public int getJ() {
+		return j;
+	}
+
+	public void setJ(int _j) {
+		this.j = _j;
+	}
+
+	public int[][][][] getTab() {
+		return tab;
+	}
+
+	public void setTab(int[][][][] _tab) {
+		this.tab = _tab;
+	}
+
+	public boolean isBot() {
+		return bot;
+	}
+
+	public void setBot(boolean _bot) {
+		this.bot = _bot;
+	}
+	
+	public int getNbCoupsBot() {
+		return nbCoupsBot;
+	}
+
+	public void setNbCoupsBot(int _nbCoupsBot) {
+		this.nbCoupsBot = _nbCoupsBot;
+	}
+
+	public int getNbCoupsJoueur() {
+		return nbCoupsJoueur;
+	}
+
+	public void setNbCoupsJoueur(int _nbCoupsJoueur) {
+		this.nbCoupsJoueur = _nbCoupsJoueur;
+	}
+	
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int _score) {
+		this.score = _score;
+	}
+}

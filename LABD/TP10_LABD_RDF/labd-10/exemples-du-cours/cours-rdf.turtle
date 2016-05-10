@@ -1,0 +1,29 @@
+@prefix ns0: <http://www.labd.org/2015/cours/schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://www.labd.org/2015/cours/data#etud03>
+  a <http://www.labd.org/2015/cours/schema#Etudiant> ;
+  ns0:nom "Marie Martin" .
+
+<http://www.labd.org/2015/cours/data#POO>
+  ns0:nom "Programmation Orientée Objets" ;
+  a ns0:Cours ;
+  ns0:aCommeEnseignant <http://www.labd.org/2015/cours/data#jcr> ;
+  ns0:estSuiviPar [
+    rdf:_1 <http://www.labd.org/2015/cours/data#etud01> ;
+    rdf:_2 <http://www.labd.org/2015/cours/data#etud02> ;
+    a rdf:Seq ;
+    rdf:_3 <http://www.labd.org/2015/cours/data#etud03>
+  ] .
+
+<http://www.labd.org/2015/cours/data#etud01>
+  a ns0:Etudiant ;
+  ns0:nom "Pierre Dupont" .
+
+<http://www.labd.org/2015/cours/data#etud02>
+  a ns0:Etudiant ;
+  ns0:nom "Alain Durand" .
+
+<http://www.labd.org/2015/cours/data#jcr>
+  a ns0:Enseignant ;
+  ns0:nom "Jean-Christophe Routier" .

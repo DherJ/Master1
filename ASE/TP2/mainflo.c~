@@ -1,0 +1,98 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+
+typedef void (func_t)(void*);
+
+#define CTX_MAGIC 0xCAFEBABE
+
+enum ctx_state_e {
+	CTX_INIT, CTX_EXQ, CTX_END
+};
+
+struct ctx_s {
+	void *ctx_stack;
+	void *ctx_esp;
+	void *ctx_ebp;
+	func_t *ctx_f;
+	void *ctx_arg;
+	enum ctx_state_e ctx_state;
+	unsigned ctx_magic;
+};
+
+struct ctx_s *current_ctx = NULL;
+
+struct ctx_s *ctx_ping;
+struct ctx_s *ctx_pong;
+
+struct ctx_s *init_ctx(int stack_size, func_t f, void *args){
+	struct ctx_s *ctx = malloc(sizeof(struct ctx_s));
+	ctx->ctx_stack = malloc(stack_size);
+	// esp et ebp pointent tous les deux en bas de la pile au même endroit
+	// -4 car sinon on sort de la pile (ca serait la 1ere adresse en dehors de la pile)
+	ctx->ctx_esp = ((char*) ctx->ctx_stack) + stack_size - 4;
+	ctx->ctx_ebp = ((char*) ctx->ctx_stack) + stack_size - 4;
+	ctx->ctx_f = f;
+	ctx->ctx_arg = args;
+	ctx->ctx_magic = CTX_MAGIC;
+	ctx->ctx_state = CTX_INIT;
+	return ctx;
+}	
+
+
+void start_current_ctx(){
+	current_ctx->ctx_state = CTX_EXQ;
+	current_ctx->ctx_f(current_ctx->ctx_arg);
+	current_ctx->ctx_state = CTX_END;
+	exit(0);
+}
+
+
+
+void switch_to_ctx(struct ctx_s *new){
+	if(current_ctx){ // = current_ctx != null
+		// on sauvegarde les anciennes valeurs des regitres dans la structure current_ctx
+		// il aurait été utile de sauvegarder le main ici --> A VOIR EN TP
+		asm("movl %%esp, %0\n" : "=r" (current_ctx->ctx_esp));
+		asm("movl %%ebp, %0\n" : "=r" (current_ctx->ctx_ebp));
+	}
+	assert(new->ctx_magic == CTX_MAGIC);
+	current_ctx = new;
+
+	// on met les nouvelles valeurs des registres dans la structure new
+	asm("movl %0, %%esp\n" :: "r" (current_ctx->ctx_esp));
+	asm("movl %0, %%ebp\n" :: "r" (current_ctx->ctx_ebp));
+
+	if(current_ctx->ctx_state == CTX_INIT)
+		start_current_ctx();
+	return;
+}
+
+void f_ping(void *arg){
+	while(1) {
+		printf("A");
+		switch_to_ctx(ctx_pong);
+		printf("B");
+		switch_to_ctx(ctx_pong);
+		printf("C");
+		switch_to_ctx(ctx_pong);
+	}
+}
+
+void f_pong(void *arg){
+	while(1) {
+		printf("1");
+		switch_to_ctx(ctx_ping);
+		printf("2");
+		switch_to_ctx(ctx_ping);
+	}
+}
+
+int main(int argc, char *argv[]){
+	printf("initialisation de ctx_ping\n");
+	ctx_ping = init_ctx(16384, f_ping, NULL);
+	printf("initialisation de ctx_pong\n");
+	ctx_pong = init_ctx(16384, f_pong, NULL);
+	switch_to_ctx(ctx_ping);
+	exit(EXIT_SUCCESS);
+}

@@ -1,0 +1,9 @@
+@prefix ns0: <http://labd/2015/reification#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://labd/2015/reification#Alice> ns0:demande [
+    a rdf:Statement ;
+    rdf:subject ns0:Bob ;
+    rdf:predicate ns0:accepte ;
+    rdf:object ns0:connexions_entrantes
+  ] .

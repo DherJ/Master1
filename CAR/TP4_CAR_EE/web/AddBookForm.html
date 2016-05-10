@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Add a Book</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+    <center>
+       <form method="POST" action="http://localhost:8080/HelloWorld_rest/AddBookServlet">
+            <p>
+                <label for="title">Titre du livre : </label>
+                <input type="text" name="title" id="title" placeholder="Ex : Zozor" size="30" maxlength="10" />
+            </p>
+            <p>
+                <label for="author">Nom de l'auteur : </label>
+                <input type="text" name="author" id="author" placeholder="Ex : Zozor" size="30" maxlength="10" />
+            </p>
+            <p>
+                <label for="anneParution">Ann&eacute;e de parution : </label>
+                <input type="text" name="anneParution" id="anneParution" placeholder="Ex : 2000" size="30" maxlength="10" />
+            </p>
+            <input type="submit" value="Valider" name="Valider" />
+            <input type="reset" name="annuler" value="Annuler" />
+        </form>
+        </center>
+    </body>
+</html> 

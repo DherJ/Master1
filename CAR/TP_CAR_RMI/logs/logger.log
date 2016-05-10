@@ -1,0 +1,121 @@
+2015-03-31 08:45:44.410 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 2
+2015-03-31 08:45:44.410 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 3
+2015-03-31 08:45:44.410 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 4
+2015-03-31 08:45:44.410 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 5
+2015-03-31 08:45:44.410 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 5 et le fils 6
+2015-03-31 08:46:29.148 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 2
+2015-03-31 08:46:29.163 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 3
+2015-03-31 08:46:29.163 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 4
+2015-03-31 08:46:29.163 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 5
+2015-03-31 08:46:29.163 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 5 et le fils 6
+2015-03-31 17:01:31.178 INFO     [RMI TCP Connection(2)-172.19.139.4]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 2
+2015-03-31 17:01:31.241 INFO     [RMI TCP Connection(2)-172.19.139.4]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 3
+2015-03-31 17:01:31.241 INFO     [RMI TCP Connection(2)-172.19.139.4]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 4
+2015-03-31 17:01:31.256 INFO     [RMI TCP Connection(2)-172.19.139.4]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 5
+2015-03-31 17:01:31.272 INFO     [RMI TCP Connection(2)-172.19.139.4]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 5 et le fils 6
+2015-03-31 17:01:50.011 INFO     [Thread-1]:rmi.node.SiteImplTree$1 - Envois du message à partir du noeud : 3
+2015-03-31 17:01:50.012 INFO     [Thread-2]:rmi.node.SiteImplTree$1 - Envois du message à partir du noeud : 19
+2015-03-31 17:03:57.447 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 2
+2015-03-31 17:03:57.447 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 3
+2015-03-31 17:03:57.447 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 4
+2015-03-31 17:03:57.447 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 5
+2015-03-31 17:03:57.447 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 5 et le fils 6
+2015-03-31 17:07:54.002 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 2
+2015-03-31 17:07:54.018 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 3
+2015-03-31 17:07:54.018 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 4
+2015-03-31 17:07:54.018 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 5
+2015-03-31 17:07:54.018 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 5 et le fils 6
+2015-03-31 17:08:14.117 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 2
+2015-03-31 17:08:14.117 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 3
+2015-03-31 17:08:14.117 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 4
+2015-03-31 17:08:14.117 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 5
+2015-03-31 17:08:14.117 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 5 et le fils 6
+2015-03-31 17:08:40.332 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 2
+2015-03-31 17:08:40.332 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 3
+2015-03-31 17:08:40.332 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 4
+2015-03-31 17:08:40.332 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 5
+2015-03-31 17:08:40.332 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 5 et le fils 6
+2015-03-31 17:08:56.347 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 2
+2015-03-31 17:08:56.347 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 3
+2015-03-31 17:08:56.347 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 4
+2015-03-31 17:08:56.347 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 5
+2015-03-31 17:08:56.347 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 5 et le fils 6
+2015-03-31 17:26:27.751 INFO     [RMI TCP Connection(2)-172.19.139.4]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 2
+2015-03-31 17:26:27.767 INFO     [RMI TCP Connection(2)-172.19.139.4]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 3
+2015-03-31 17:26:27.767 INFO     [RMI TCP Connection(2)-172.19.139.4]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 4
+2015-03-31 17:26:27.767 INFO     [RMI TCP Connection(2)-172.19.139.4]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 5
+2015-03-31 17:26:27.767 INFO     [RMI TCP Connection(2)-172.19.139.4]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 5 et le fils 6
+2015-03-31 17:26:34.224 INFO     [Thread-1]:rmi.node.SiteImplTree$1 - Envois du message à partir du noeud : 3
+2015-03-31 17:26:34.224 INFO     [Thread-2]:rmi.node.SiteImplTree$1 - Envois du message à partir du noeud : 19
+2015-03-31 17:26:56.464 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 2
+2015-03-31 17:26:56.480 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 3
+2015-03-31 17:26:56.480 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 4
+2015-03-31 17:26:56.480 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 5
+2015-03-31 17:26:56.480 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 5 et le fils 6
+2015-03-31 17:28:10.427 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 2
+2015-03-31 17:28:10.427 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 3
+2015-03-31 17:28:10.427 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 4
+2015-03-31 17:28:10.427 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 5
+2015-03-31 17:28:10.427 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 5 et le fils 6
+2015-03-31 17:28:29.744 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 2
+2015-03-31 17:28:29.744 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 3
+2015-03-31 17:28:29.744 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 4
+2015-03-31 17:28:29.760 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 5
+2015-03-31 17:28:29.760 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 5 et le fils 6
+2015-03-31 17:29:01.906 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 2
+2015-03-31 17:29:01.906 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 3
+2015-03-31 17:29:01.906 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 4
+2015-03-31 17:29:01.906 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 5
+2015-03-31 17:29:01.906 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 5 et le fils 6
+2015-03-31 17:31:35.637 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 2
+2015-03-31 17:31:35.637 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 3
+2015-03-31 17:31:35.637 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 4
+2015-03-31 17:31:35.637 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 5
+2015-03-31 17:31:35.637 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 5 et le fils 6
+2015-03-31 17:31:35.637 INFO     [Thread-3]:rmi.node.SiteImplTree$1 - Envois du message à partir du noeud : 14
+2015-03-31 17:31:35.637 INFO     [Thread-2]:rmi.node.SiteImplTree$1 - Envois du message à partir du noeud : 3
+2015-03-31 17:35:17.998 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 2
+2015-03-31 17:35:17.998 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 3
+2015-03-31 17:35:17.998 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 4
+2015-03-31 17:35:17.998 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 5
+2015-03-31 17:35:17.998 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 5 et le fils 6
+2015-03-31 17:35:17.998 INFO     [Thread-2]:rmi.node.SiteImplTree$1 - Envois du message à partir du noeud : 3
+2015-03-31 17:35:17.998 INFO     [Thread-3]:rmi.node.SiteImplTree$1 - Envois du message à partir du noeud : 14
+2015-03-31 17:43:01.340 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 2
+2015-03-31 17:43:01.340 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 3
+2015-03-31 17:43:01.340 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 4
+2015-03-31 17:43:01.340 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 5
+2015-03-31 17:43:01.340 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 5 et le fils 6
+2015-03-31 17:43:01.340 INFO     [Thread-2]:rmi.node.SiteImplTree$1 - Envois du message à partir du noeud : 3
+2015-03-31 17:43:01.340 INFO     [Thread-3]:rmi.node.SiteImplTree$1 - Envois du message à partir du noeud : 14
+2015-03-31 17:54:38.944 INFO     [RMI TCP Connection(2)-172.19.139.4]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 2
+2015-03-31 17:54:38.959 INFO     [RMI TCP Connection(2)-172.19.139.4]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 3
+2015-03-31 17:54:38.959 INFO     [RMI TCP Connection(2)-172.19.139.4]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 4
+2015-03-31 17:54:38.959 INFO     [RMI TCP Connection(2)-172.19.139.4]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 5 et le fils 2
+2015-03-31 17:54:38.959 INFO     [RMI TCP Connection(2)-172.19.139.4]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 4 et le fils 6
+2015-03-31 17:54:38.975 INFO     [RMI TCP Connection(2)-172.19.139.4]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 5
+2015-03-31 17:54:38.975 INFO     [RMI TCP Connection(2)-172.19.139.4]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 5 et le fils 6
+2015-03-31 17:54:53.010 INFO     [Thread-1]:rmi.node.SiteImplTree$1 - Envois du message à partir du noeud : 3
+2015-03-31 17:54:53.026 INFO     [Thread-2]:rmi.node.SiteImplTree$1 - Envois du message à partir du noeud : 19
+2015-03-31 17:54:53.026 INFO     [Thread-3]:rmi.node.SiteImplTree$1 - Envois du message à partir du noeud : 21
+2015-03-31 17:56:22.817 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 2
+2015-03-31 17:56:22.817 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 3
+2015-03-31 17:56:22.817 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 4
+2015-03-31 17:56:22.817 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 5
+2015-03-31 17:56:22.817 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 5 et le fils 6
+2015-03-31 17:56:22.832 INFO     [Thread-2]:rmi.node.SiteImplTree$1 - Envois du message à partir du noeud : 3
+2015-03-31 17:56:22.832 INFO     [Thread-3]:rmi.node.SiteImplTree$1 - Envois du message à partir du noeud : 14
+2015-03-31 17:57:54.217 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 2
+2015-03-31 17:57:54.217 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 3
+2015-03-31 17:57:54.217 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 4
+2015-03-31 17:57:54.217 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 5
+2015-03-31 17:57:54.217 INFO     [main]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 5 et le fils 6
+2015-03-31 17:57:54.217 INFO     [Thread-2]:rmi.node.SiteImplTree$1 - Envois du message à partir du noeud : 3
+2015-03-31 17:57:54.217 INFO     [Thread-3]:rmi.node.SiteImplTree$1 - Envois du message à partir du noeud : 14
+2015-03-31 17:58:12.522 INFO     [RMI TCP Connection(2)-172.19.139.4]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 2
+2015-03-31 17:58:12.522 INFO     [RMI TCP Connection(2)-172.19.139.4]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 3
+2015-03-31 17:58:12.522 INFO     [RMI TCP Connection(2)-172.19.139.4]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 2 et le fils 4
+2015-03-31 17:58:12.538 INFO     [RMI TCP Connection(2)-172.19.139.4]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 1 et le fils 5
+2015-03-31 17:58:12.538 INFO     [RMI TCP Connection(2)-172.19.139.4]:rmi.node.SiteImplTree - Ajout du lien entre le pere : 5 et le fils 6
+2015-03-31 17:58:27.073 INFO     [Thread-1]:rmi.node.SiteImplTree$1 - Envois du message à partir du noeud : 3
+2015-03-31 17:58:27.089 INFO     [Thread-2]:rmi.node.SiteImplTree$1 - Envois du message à partir du noeud : 19

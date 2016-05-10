@@ -1,0 +1,5 @@
+package tp.main;
+
+public class Quadruple {
+	private int m, n, i, j;
+}

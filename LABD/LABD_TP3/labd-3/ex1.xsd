@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	
+	<xs:element name="doc" />
+
+	<!-- Question 1 -->
+	<xs:simpleType name="tHeure">
+		<xs:restriction base="xs:time">
+			<xs:minInclusive value="02:30:00"/>
+			<xs:maxInclusive value="16:50:00"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="heure" type="tHeure"/>
+
+	<!-- Question 2 -->
+	<xs:simpleType name="tNombre">
+		<xs:restriction base="xs:float">
+			<xs:minInclusive value="-3476.4"/>
+			<xs:maxExclusive value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="nombre" type="tNombre"/>
+
+	<!-- Question 3 -->
+	<xs:simpleType name="tString">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="string" type="tString"/>
+
+	<!-- Question 4 -->
+	<xs:simpleType name="tImage">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="jpg|gif|png"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="image" type="tImage"/>
+	
+	<!--Question 5-->
+	<xs:simpleType name="ISBN">
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:pattern value="[0-9]{13}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="isbn" type="ISBN"/>
+</xs:schema>

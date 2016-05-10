@@ -1,0 +1,411 @@
+/****************************************************\
+ *    Dhersin Jérôme - Knapik Christopher      *
+/****************************************************\
+
+
+Exercice 1 : 
+
+Question 1 :
+
+Reqête : 
+
+SELECT ?c
+WHERE {
+	?c rdf:type rdfs:Class .
+}
+
+--> 19 résultats
+	
+	
+Question 2 :
+
+Reqête : 
+PREFIX sports: <http://www.labd.org/2015/sport/schema#> .
+SELECT ?p
+WHERE {
+  ?p rdf:type rdf:Property .
+  ?p rdfs:domain sports:Sport .
+}
+
+--> 2 résultats : 
+<binding name='p'><uri>http://www.labd.org/2015/sport/schema#sePratiqueSur</uri></binding>
+<binding name='p'><uri>http://www.labd.org/2015/sport/schema#utiliseMateriel</uri></binding>
+
+
+Question 3 :
+
+Reqête : 
+PREFIX sports: <http://www.labd.org/2015/sport/schema#> .
+
+SELECT DISTINCT ?p
+WHERE {
+  ?s a sports:Sport ;
+     ?p ?o .
+}
+
+--> 9 résultats
+
+
+Question 4 :
+
+Reqête : 
+PREFIX sports: <http://www.labd.org/2015/sport/schema#> .
+
+SELECT ?x ?ch
+WHERE {
+  ?x rdfs:comment ?ch .
+  filter(regex(?ch,"sport","i"))
+}
+
+--> 5 résultats
+<result>
+<binding name='x'><uri>http://www.labd.org/2015/sport/schema#MaterielSportif</uri></binding>
+<binding name='ch'><literal>Materiel utilisÃ© pour pratiquer un sport</literal></binding>
+</result>
+<result>
+<binding name='x'><uri>http://www.labd.org/2015/sport/schema#SportBallon</uri></binding>
+<binding name='ch'><literal>Sport qui utilise un ballon</literal></binding>
+</result>
+<result>
+<binding name='x'><uri>http://www.labd.org/2015/sport/schema#SportCollectif</uri></binding>
+<binding name='ch'><literal>Sport qui oppose des Ã©quipes entre elles, et dont les titres sont attribuÃ©s aux Ã©quipes</literal></binding>
+</result>
+<result>
+<binding name='x'><uri>http://www.labd.org/2015/sport/schema#SportEquipe</uri></binding>
+<binding name='ch'><literal>Sport qui se joue en Ã©quipe, mais dont les titres sont attribuÃ©s individuellement</literal></binding>
+</result>
+<result>
+<binding name='x'><uri>http://www.labd.org/2015/sport/schema#SportIndividuel</uri></binding>
+<binding name='ch'><literal>Sport dont les titres sont attribuÃ©s individuellement</literal></binding>
+</result>
+
+
+Question 5 :
+
+Reqête : 
+PREFIX sports: <http://www.labd.org/2015/sport/schema#> .
+
+SELECT ?x 
+WHERE {
+  ?x a sports:Sport
+  OPTIONAL {?x sports:materiel ?y}
+  FILTER (!bound(?y))
+}
+
+--> 4 résultats
+<binding name='x'><uri>http://www.labd.org/2015/sport/instance#Basket</uri></binding>
+<binding name='x'><uri>http://www.labd.org/2015/sport/instance#Course</uri></binding>
+<binding name='x'><uri>http://www.labd.org/2015/sport/instance#Football</uri></binding>
+<binding name='x'><uri>http://www.labd.org/2015/sport/instance#Tennis</uri></binding>
+
+
+Question 6 :
+
+Reqête : avec GROUPBY
+
+PREFIX sports: <http://www.labd.org/2015/sport/schema#> .
+SELECT DISTINCT ?p
+WHERE {
+  ?p sports:pratique ?s1 .
+}
+GROUP BY ?s1 
+
+--> 2 résultats
+<binding name='p'><uri>http://www.inria.fr/2007/09/11/hms.rdfs-instances#Catherine</uri></binding>
+<binding name='p'><uri>http://www.inria.fr/2007/09/11/hms.rdfs-instances#Harry</uri></binding>
+
+
+Reqête : sans GROUPBY
+
+PREFIX sports: <http://www.labd.org/2015/sport/schema#> .
+SELECT DISTINCT ?p
+WHERE {
+  ?p sports:pratique ?s1 .
+  ?p sports:pratique ?s2 .
+  filter(?s1 != ?s2)
+}
+
+--> 2 résultats
+<binding name='p'><uri>http://www.inria.fr/2007/09/11/hms.rdfs-instances#Catherine</uri></binding>
+<binding name='p'><uri>http://www.inria.fr/2007/09/11/hms.rdfs-instances#Harry</uri></binding>
+
+
+Question 7 :
+
+Reqête : sans GROUPBY
+
+PREFIX sports: <http://www.labd.org/2015/sport/schema#> .
+SELECT DISTINCT ?p
+WHERE {
+  ?p sports:pratique ?s1 .
+  ?p sports:pratique ?s2 .
+  filter(?s1 = ?s2)
+}	
+
+--> 1 résultat
+<binding name='p'><uri>http://www.inria.fr/2007/09/11/hms.rdfs-instances#Laura</uri></binding>
+
+
+Reqête : avec GROUPBY
+
+PREFIX sports: <http://www.labd.org/2015/sport/schema#> .
+SELECT ?p
+WHERE {
+  ?p sports:pratique ?s
+}
+GROUP BY ?p
+HAVING (count(?s) = 1)
+
+--> 1 résultat
+<binding name='p'><uri>http://www.inria.fr/2007/09/11/hms.rdfs-instances#Laura</uri></binding>
+	
+Question 8 :
+
+Reqête : 
+
+PREFIX sports: <http://www.labd.org/2015/sport/schema#> .
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#> 
+
+		SELECT  ?p (count(?s) AS ?nbSport)
+		WHERE {
+			?p a humans:Person
+			OPTIONAL {
+		   		?p sports:pratique ?s .
+		   	}
+		} GROUP BY ?p
+
+--> résultats 
+<binding name='p'><uri>http://www.inria.fr/2007/09/11/hms.rdfs-instances#Catherine</uri></binding>
+<binding name='nbSport'><literal datatype='http://www.w3.org/2001/XMLSchema#integer'>2</literal></binding>
+
+<binding name='p'><uri>http://www.inria.fr/2007/09/11/hms.rdfs-instances#Harry</uri></binding>
+<binding name='nbSport'><literal datatype='http://www.w3.org/2001/XMLSchema#integer'>2</literal></binding>
+
+<binding name='p'><uri>http://www.inria.fr/2007/09/11/hms.rdfs-instances#Laura</uri></binding>
+<binding name='nbSport'><literal datatype='http://www.w3.org/2001/XMLSchema#integer'>1</literal></binding>
+
+
+Question 9 :
+
+Reqête : 
+
+PREFIX sports: <http://www.labd.org/2015/sport/schema#> .
+PREFIX s-inst: <http://www.labd.org/2015/sport/instance#> .
+PREFIX sps: <http://www.labd.org/2015/sport/schema#> .
+
+SELECT ?1 ?2
+WHERE {
+  s-inst:Basket sps:match ?m .
+  ?m sps:duree ?d
+  ?d rdf:_1 ?1
+  ?d rdf:_2 ?2
+}
+
+Autre solution avec les chemins :
+
+SELECT ?listeNode
+WHERE {
+  s-inst:Basket sports:match/sports:duree/rdfs:member ?listeNode
+}
+
+--> résultat
+
+<binding name='1'><literal>4 périodes de 10 minutes (règle de la FIBA)</literal></binding>
+<binding name='2'><literal>4 périodes de 12 minutes (règle de la NBA)</literal></binding>
+
+
+
+Question 10 :
+
+Reqête : 
+
+SELECT ?o
+WHERE {
+  s-inst:Basket sports:match ?match .
+  ?match sports:duree ?d .
+  ?d rdf:_2 ?o
+}
+
+Autre solution
+
+SELECT ?o
+WHERE {
+  s-inst:Basket sports:match/sports:duree/rdfs:member ?o .
+  FILTER(regex(?o,"NBA"))
+}
+
+--> résultat
+
+<binding name='o'><literal>4 périodes de 12 minutes (règle de la NBA)</literal></binding>
+
+
+Question 11 :
+
+Reqête : 
+
+PREFIX sports: <http://www.labd.org/2015/sport/schema#> .
+
+SELECT ?sp ?d
+WHERE {
+  	{
+  		?sp a sports:SportCollectif .
+  		?sp sports:match ?match .
+  		?match sports:duree ?d .
+  		OPTIONAL {?d rdfs:member ?dd}
+  		FILTER(!bound(?dd))
+  	}
+	UNION
+ 	 {
+  		?sp a sports:SportCollectif .
+  		?sp sports:match ?match .
+  		?match sports:duree ?duree .
+  		?duree rdfs:member ?d
+  	} 
+}
+
+--> résultat
+
+<binding name='sp'><uri>http://www.labd.org/2015/sport/instance#Football</uri></binding>
+<binding name='d'><literal>2 périodes de 45 minutes90 minutes (2 fois 45 minutes), avec éventuellement des prolongations (2 fois 15 minutes) suivies (ou pas) de tirs au but</literal></binding>
+
+<binding name='sp'><uri>http://www.labd.org/2015/sport/instance#Basket</uri></binding>
+<binding name='d'><literal>4 périodes de 10 minutes (règle de la FIBA)</literal></binding>
+
+<binding name='sp'><uri>http://www.labd.org/2015/sport/instance#Basket</uri></binding>
+<binding name='d'><literal>4 périodes de 12 minutes (règle de la NBA)</literal></binding>
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Exercice 2 :
+ 
+
+Question 1 :
+
+Reqête : 
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX data: <http://bond007.org/RDF/mes_donnees.rdf#>
+SELECT ?nom ?p 
+WHERE {
+ 	data:me foaf:knows ?ami.
+ 	?ami foaf:name ?nom.
+ 	OPTIONAL {?ami foaf:homepage ?p}
+} 
+
+--> 4 résultats
+
+<binding name='nom'><literal>Auric Goldfinger</literal></binding>
+
+<binding name='nom'><literal>Ernst Stavro Blofeld</literal></binding>
+
+<binding name='nom'><literal>Eve Moneypenny</literal></binding>
+
+<binding name='nom'><literal>Bill White</literal></binding>
+<binding name='p'><uri>http://white.uk/</uri></binding>
+
+
+Question 2 :
+
+Reqête : 
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX data: <http://bond007.org/RDF/mes_donnees.rdf#>
+SELECT ?nom ?p WHERE
+{
+ data:me foaf:knows ?ami.
+ ?ami foaf:name ?nom.
+ OPTIONAL {?ami foaf:homepage|foaf:interest|foaf:workplaceHomepage ?p}
+} 
+
+--> 4 résultats
+
+<binding name='nom'><literal>Auric Goldfinger</literal></binding>
+
+<binding name='nom'><literal>Ernst Stavro Blofeld</literal></binding>
+<binding name='p'><uri>http://spectre.com</uri></binding>
+
+<binding name='nom'><literal>Eve Moneypenny</literal></binding>
+
+<binding name='nom'><literal>Bill White</literal></binding>
+<binding name='p'><uri>http://white.uk/</uri></binding>
+
+
+Question 3 :
+
+Reqête : 
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX data: <http://bond007.org/RDF/mes_donnees.rdf#>
+SELECT ?nom ?p 
+WHERE {
+	data:me foaf:knows+/foaf:name ?nom .
+	FILTER (?nom != "James Bond")
+}
+
+
+--> 6 résultats 
+
+<binding name='nom'><literal>Auric Goldfinger</literal></binding>
+
+<binding name='nom'><literal>Ernst Stavro Blofeld</literal></binding>
+
+<binding name='nom'><literal>Eve Moneypenny</literal></binding>
+
+<binding name='nom'><literal>Bill White</literal></binding>
+
+<binding name='nom'><literal>Dominic Greene</literal></binding>
+
+<binding name='nom'><literal>Craig Mitchell</literal></binding>
+
+
+Question 4 :
+
+Reqête : 
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX data: <http://bond007.org/RDF/mes_donnees.rdf#>
+SELECT ?ami ?nom ?p 
+WHERE {
+	data:me foaf:knows ?ami .
+	?ami foaf:name ?nom
+	FILTER NOT EXISTS {?ami foaf:phone ?p}
+}  
+
+--> 3 résultats 
+
+<binding name='ami'><uri>http://bond007.org/RDF/mes_donnees.rdf#auric</uri></binding>
+<binding name='nom'><literal>Auric Goldfinger</literal></binding>
+
+<binding name='ami'><uri>http://bond007.org/RDF/mes_donnees.rdf#ernst</uri></binding>
+<binding name='nom'><literal>Ernst Stavro Blofeld</literal></binding>
+
+<binding name='ami'><uri>http://bond007.org/RDF/mes_donnees.rdf#white</uri></binding>
+<binding name='nom'><literal>Bill White</literal></binding>
+
+
+Question 5 :
+
+Reqête : 
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX data: <http://bond007.org/RDF/mes_donnees.rdf#>
+SELECT ?p (count(?pp) as ?nb_connaissances) 
+WHERE {
+  ?p a foaf:Person .
+  ?p foaf:knows ?pp .
+} GROUP BY ?p
+
+--> 4 résultats
+
+<binding name='p'><uri>http://bond007.org/RDF/mes_donnees.rdf#eve</uri></binding>
+<binding name='nb_connaissances'><literal datatype='http://www.w3.org/2001/XMLSchema#integer'>1</literal></binding>
+
+<binding name='p'><uri>http://bond007.org/RDF/mes_donnees.rdf#greene</uri></binding>
+<binding name='nb_connaissances'><literal datatype='http://www.w3.org/2001/XMLSchema#integer'>1</literal></binding>
+
+<binding name='p'><uri>http://bond007.org/RDF/mes_donnees.rdf#me</uri></binding>
+<binding name='nb_connaissances'><literal datatype='http://www.w3.org/2001/XMLSchema#integer'>4</literal></binding>
+
+<binding name='p'><uri>http://bond007.org/RDF/mes_donnees.rdf#white</uri></binding>
+<binding name='nb_connaissances'><literal datatype='http://www.w3.org/2001/XMLSchema#integer'>1</literal></binding>

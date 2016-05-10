@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+
+	<xs:complexType name="tExpr">
+
+	          	<xs:choice>
+	            		<xs:element ref="op" />
+	            		<xs:element ref="cons" />
+	            		<xs:element ref="var" />
+       		</xs:choice>
+	  </xs:complexType>
+	  
+	  <xs:simpleType name="tVal">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="+"/>
+      			<xs:enumeration value="-"/>
+      			<xs:enumeration value="*"/>
+	  		<xs:enumeration value="/"/>
+		</xs:restriction>
+	</xs:simpleType>
+	  
+	  <xs:complexType name="tOp">
+	        	<xs:choice minOccurs ="0" maxOccurs ="2">
+	            		<xs:element ref="op" />
+	           		<xs:element ref="cons" />
+	            		<xs:element ref="var" />
+       		</xs:choice>
+	        	<xs:attribute name="val" type="tVal" use="required" />
+	  </xs:complexType>
+
+
+	<xs:element name="op" type="tOp" />
+
+	<xs:element name="var" type="xs:string" />
+
+	<xs:element name="expr" type="tExpr" />
+
+	<xs:element name="cons" type="xs:integer" />
+
+</xs:schema>

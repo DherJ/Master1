@@ -1,0 +1,17 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+@prefix nss:<http://www.labd.com/exo1/concepts> .
+@prefix ns:<http://www.labd.com/exo1/instances> .
+
+ns:Citroen a nss:Marque .
+ns:Citroen nss:nom "Citroen" .
+ns:Citroen nss:fondee "1991" .
+
+nss:Voiture a rdfs:Class .
+nss:marque 
+	a rdfs:Property;
+	rdfs:domain nss:Voiture;      # on associe la marque a la voiture et donc la voiture a une marque
+	rdfs:range rdfs:literal .          # définit le type de la propriété           pour pouvoir mettre "Citroen"
+	          #ou nss:Marque.       # pour pouvoir mettre ns:Citroen_inst 
+	

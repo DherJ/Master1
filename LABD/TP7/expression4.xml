@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<expr xsi:schemaLocation="http://www.expression.org expression.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.expression.org">
+  <op val="+">
+    <op val="-">
+      <op val="*">
+        <cons>-29</cons>
+        <var>C</var>
+      </op>
+      <op val="+">
+        <var>A</var>
+        <cons>-62</cons>
+      </op>
+    </op>
+    <op val="-">
+      <var>B</var>
+      <var>A</var>
+    </op>
+  </op>
+</expr>

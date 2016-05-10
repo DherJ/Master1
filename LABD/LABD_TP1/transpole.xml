@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE itineraire SYSTEM "transpole.dtd"> 
+<itineraire date="22/01" heure="12H35" 
+			temps="1h27" vitesse="normale" 
+			depart="Seclin - Centre hospitalier" arrive="Roubaix - Avenue Motte"
+			mode="metro-tramway-bus-car"
+			preference="rapide">
+	<etapes>
+		<etape depart="Seclin - Centre Hospitalier" arrive="Seclin - Hotel de Ville" mode="marche" temps="13" heure="14H35"/>
+		<etape depart="Seclin - Hotel de Ville" arrive="Lille - CHR B Calmette" mode="bus" temps="23" heure="14H51" direction="Lille - Porte des postes" ligne="52" />
+		<etape depart="Lille - CHR B Calmette" arrive="Lille - CHR B Calmette" mode="marche" temps="4" heure="15h14"/>
+		<etape depart="Lille - CHR B Calmette" arrive="Lille - Porte des postes" mode="metro" temps="3" heure="15h18"  direction="Villeneuve d'ascq - 4 Cantons Grand Stade" ligne="1"/>
+		<etape depart="Lille - Porte des postes" arrive="Lille - Porte des postes" mode="marche" temps="6" heure="15h21"/>
+		<etape depart="Lille - Porte des postes" arrive="Roubaix - Epeule Montesqieu" mode="metro" temps="25" heure="15h27" direction="Tourcoing - CH Dron" ligne="2"/>
+		<etape depart="Roubaix - Epeule Montesqieu" arrive="Roubaix - Epeule Montesqieu" mode="marche" temps="4" heure="15h52"/>
+		<etape depart="Roubaix - Epeule Montesqieu" arrive="Roubaix - Avenue Motte" mode="marche" temps="9" heure="15h56" direction="Roubaix - Fraternite" ligne="25"/>
+	</etapes>
+</itineraire>

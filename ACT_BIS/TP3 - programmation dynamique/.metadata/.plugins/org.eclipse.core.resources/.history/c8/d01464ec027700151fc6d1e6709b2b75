@@ -1,0 +1,66 @@
+package tp.main;
+
+import java.util.List;
+
+public class Main {
+	
+	public static int [] parseCommandLine(String[] args) {
+		int result [] = new int [4];
+		String[] parts;
+		for(String s : args) {
+			parts = s.split("=");
+			switch(parts[0]) {
+			case "-m" :
+				result[0] = Integer.parseInt(parts[1]);
+				break;
+			case "-n" :
+				result[1] = Integer.parseInt(parts[1]);
+				break;
+			case "-i" :
+				result[2] = Integer.parseInt(parts[1]);
+				break;
+			case "-j" :
+				result[3] = Integer.parseInt(parts[1]);
+				break;
+			}
+		}
+		return result;
+	}
+
+	
+	public static void main(String[] args) {
+		// format of the arguments for the execution : -m=? -n=? -i=? -j=?
+		// arguments[0] = m, arguments[1] = n, arguments[2] = i, arguments[3] = j
+		int arguments [] = parseCommandLine(args);
+		int m = arguments[0];
+		int n = arguments[1];
+		int i = arguments[2];
+		int j = arguments[3];
+		System.out.println("m = " + arguments[0]);
+		System.out.println("n = " + arguments[1]);
+		System.out.println("i = " + arguments[2]);
+		System.out.println("j = " + arguments[3]);
+		
+		//Game game = new Game(m, n, i, j);
+		//game.beginGame();
+		int[][][][] tab = new int[140][140][140][140];
+		Tablet t = new Tablet(m,n,i,j,tab);
+		long begin = System.nanoTime();
+		List<Quadruple> list = t.getQuadraEgalVal(127);
+		long end = System.nanoTime();
+		System.out.println("\ttime: " + ((end-begin)*Math.pow(10, -9)) + "s");
+		
+		for(Quadruple q : list) {
+			System.out.println(q.toString());
+		}
+	}
+	
+	public void testFunctionFindValue127(int m, int n, int i, int j){
+		int[][][][] tab = new int [128][128][128][128];
+		Tablet t = new Tablet(m,n,i,j,tab);
+		long begin = System.nanoTime();
+		List<Quadruple> list = t.getQuadraEgalVal(127);
+		long end = System.nanoTime();
+		System.out.println("\tTime: " + ((end-begin)*Math.pow(10, -9)) + "s");
+	}
+}

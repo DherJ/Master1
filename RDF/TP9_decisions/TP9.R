@@ -1,0 +1,97 @@
+# Chargement de la base de noms d'animaux
+source ("rdfAnimaux.txt")
+
+
+# Convertit une chaîne de caractère en nombre (ASCII)
+str2int <- function(x)
+{
+	strtoi(charToRaw(x),16L)-96
+}
+
+# Convertit un int en char
+int2str <- function (x)
+{
+	x <- x + 96
+	mode (x) <- "raw"
+ 	return (rawToChar(x))
+}
+
+
+lettre_informative <- function (liste_noms)
+{
+	nb_max <- 0
+	mat = matrix(rep(0, 26*length(liste_noms)),nrow=26, ncol=length(liste_noms))
+	colnames(mat) = liste_noms
+
+		for (name in liste_noms)
+		{
+  		  c = str2int(name);
+  		  mat[c,name] <- 1;
+		}
+
+	h <- rep (0, 26)
+	for (i in 1:26)
+	{
+		h[i] = length(mat[i,][mat[i,]==1]) / length(liste_noms)
+	}
+
+	h <- -(log(h^h)) - (log ((1-h)^(1-h)))
+
+	lettre <- which.max(h)
+
+	list(let = lettre, avec = liste_noms[mat[lettre, liste_noms]==1], sans = liste_noms[mat[lettre, liste_noms]!=1])
+}
+
+# print ("Proportion de i :")
+# print (max_letters[9])
+
+# print ("Lettre maximum numero:")
+# print (indice)
+# print ("Contenant la lettre :")
+# print (nb_max)
+
+# print (rowSums(mat))
+
+
+# print (h)
+
+jouer <- function (list)
+{
+	trouve = FALSE
+	solution <- ""
+
+	while (!trouve)
+	{
+		list <- lettre_informative(list)
+
+		cat("Votre mot contient-il un ...\n", intToUtf8(list$let +96), "? \n1 pour oui, 2 pour non\n")
+
+		choix = scan(what="int", nmax = 1);
+
+		if (choix == 1)
+		{
+			list = list$avec
+		}	
+
+		else if (choix == 2)
+		{
+			list = list$sans
+		}
+
+		if (length(list) == 1)
+		{
+			solution = list[1]
+			print (solution)
+			trouve = TRUE
+		}
+
+	}
+
+	cat ("Vous cherchiez ...", solution, " ?\n")
+}
+
+
+# A vous de jouer !
+jouer (noms)
+
+

@@ -1,0 +1,112 @@
+creer partition
+creer un système de fichiers sur une partition
+allocateur de bloc : 	new_bloc()
+			free_bloc()
+
+Fichier : accès par leur i-nombre --> n° bloc d'un i-noeud --> "méta information"
+
+accès au dossier
+	liste blocs directs
+	bloc d'indirection
+	bloc de double indirection
+	
+n° de bloc null 	BLOC_NULL 0
+bloc qui ne contient que des zéros
+
+- struct inode_s 
+- lire/écrire des inoeuds = read/write_inode()
+- créer/détruire un noeud = new/free_inode()
+   |---> vide
+
+exo 13 (structure d'un inoeud)
+
+struct inode_s { };
+void read_inode(unsigned int inumber, struct inode_s *inode);
+void write_inode(unsigned int inumber, struct inode_s *inode);
+unsigned int create_inode(enum file_type_e type);
+int delete_inode(unsigned int inumber);
+
+
+/* ----------- CODE ----------- */
+
+#define N_DIRECT 2
+#define BLOC_NULL 0
+
+enum inode_type_e {IT_FILE, IT_DIR, IT_OTHER};
+struct inode_s{
+	enum inode_type_e 	in_type;
+	unsigned 		in_size; // en octets
+	unsigned		in_direct[N_direct];
+	unsigned		in_indirect;
+	unsigned		in_d_indirect;
+};
+
+void read_inode(unsigned int inumber, struct inode_s *inode){
+	read_bloc_n(inumber, inode, sizeof(struct inode_s);
+}
+
+void write_inode(unsigned int inumber, struct inode_s *inode){
+	write_bloc_n(inumber, inode, sizeof(struct inode_s);
+}
+
+unsigned int create_inode(enum inode_type_e type){
+	new_bloc();	
+	struct inode_s *inode;
+	inode.in_type=type;
+	inode.in_size=0;
+	inode.in_direct[N_direct]=BLOC_NULL;
+	inode.in_indirect=BLOC_NULL;
+	inode.in_d_indirect=BLOC_NULL; 
+	inumber=new_bloc();
+	if(!inumber) printf("disque plein...');
+	write_inode(inumber,&inode);
+	return inumber;
+}
+
+int delete_inode(unsigned int inumber){
+	struct inode_s inode;
+	read_inode(inumber, &inode);
+	free_bloc_s(inode.in_direct, N_direct);
+	read_bloc(inode.in_indirect, blocs);
+	free_bloc_s(blocs, NNBPB); // #define NNBPB-(BLOC_SIZE/sizeof(int))
+	int blocs[NNBPB] // nombre de numero de blocs par bloc	
+	free_bloc(inode.in_indirect);
+	...double indirect
+	free_bloc(inumber);
+	return 1; 
+}
+
+unsigned int vbloc_of_Fbloc(inumber, inumber, bool_t allocate){ //faux lecture / vrai ecriture ici faux
+	read_inode(inumber, &inode);
+	if(Fbloc<N_direct)
+		return inode.in_direct[Fbloc];
+	Fbloc==N_direct;
+	if(Fbloc<NNBPB){
+		if(inode.in_indirect==BLOC_NULL)
+			return BLOC_NULL;
+		read_bloc(inode.in_indirect, blocs);
+		return blocs[Fbloc];
+	}		
+	Fbloc==NNBPB;	
+}
+
+unsigned int vbloc_of_Fbloc(inumber, inumber, bool_t allocate){ //faux lecture / vrai ecriture ici vrai
+	read_inode(inumber, &inode);
+	if(Fbloc<N_direct){
+		if(allocate){ 
+			if(inode.in_indirect[FBloc]==BLOC_NULL){
+				inode.in_direct[FBloc]=new_bloc();
+				write_inode(inumber,&inode);
+				}
+			}			
+		return inode.in_direct[Fbloc];
+	}	
+	Fbloc==N_direct;
+	if(Fbloc<NNBPB){
+		if(inode.in_indirect==BLOC_NULL)
+			return BLOC_NULL;
+		read_bloc(inode.in_indirect, blocs);
+		return blocs[Fbloc];
+	}		
+	Fbloc==NNBPB;	
+}

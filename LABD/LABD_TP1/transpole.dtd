@@ -1,0 +1,24 @@
+
+<!ELEMENT  itineraire (etapes)>
+<ATTLIST itineraire 
+	date CDATA #REQUIRED
+	heure CDATA #REQUIRED
+	temps CDATA #REQUIRED
+	vitesse CDATA #IMPLIED
+	depart CDATA #REQUIRED
+	arrive CDATA #REQUIRED
+	mode CDATA #REQUIRED
+	preference CDATA #IMPLIED
+	>	
+<!ELEMENT  etapes (etape+)>
+<!ELEMENT  etape (CDATA)>
+<ATTLIST etape                    IMPLIED    #REQUIRED
+	depart CDATA #REQUIRED
+	arrive CDATA #REQUIRED
+	mode CDATA #REQUIRED
+	temps CDATA #IMPLIED
+	heure CDATA #REQUIRED
+	direction CDATA #IMPLIED
+	ligne CDATA #IMPLIED
+	>
+

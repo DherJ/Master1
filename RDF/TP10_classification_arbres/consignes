@@ -1,0 +1,6 @@
+Données (au choix)
+	* Visages
+	* Chiffres manuscrits USPS à binariser
+
+Faire une fonction pour séparer les données d'apprentissage et de test (en plus)
+	- Une fonction pour calculer le taux de classification

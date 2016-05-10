@@ -1,0 +1,60 @@
+package tp.main;
+
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+public class Legend {
+
+	private JLabel clicLeftDesc;
+	private JLabel clicRightDesc;
+	private Image iconLeftClic;
+	private Image iconRightClic;
+	private int frame_width, frame_height;
+	
+	public Legend (int frame_width, int frame_height) {
+		this.frame_width = frame_width;
+		this.frame_height = frame_height;
+		this.clicLeftDesc = new JLabel("Supprimer une ligne");
+		this.clicRightDesc = new JLabel("Supprimer une colonne");
+		this.clicLeftDesc = new JLabel("Supprimer une ligne");
+		this.clicRightDesc = new JLabel("Supprimer une colonne");
+		this.clicLeftDesc.setBounds(10, frame_height-300, 120, 300);
+		this.clicRightDesc.setBounds(10, 330, 140, 330);
+		this.iconLeftClic = new ImageIcon("images/clic-gauche.jpg").getImage();
+		this.iconRightClic = new ImageIcon("images/clic-droit.jpg").getImage();
+	}
+
+	public Image getIconLeftClic() {
+		return iconLeftClic;
+	}
+
+	public void setIconLeftClic(Image iconLeftClic) {
+		this.iconLeftClic = iconLeftClic;
+	}
+
+	public Image getIconRightClic() {
+		return iconRightClic;
+	}
+
+	public void setIconRightClic(Image iconRightClic) {
+		this.iconRightClic = iconRightClic;
+	}
+	
+	public JLabel getClicLeftDesc() {
+		return clicLeftDesc;
+	}
+
+	public void setClicLeftDesc(JLabel clicLeftDesc) {
+		this.clicLeftDesc = clicLeftDesc;
+	}
+
+	public JLabel getClicRightDesc() {
+		return clicRightDesc;
+	}
+
+	public void setClicRightDesc(JLabel clicRightDesc) {
+		this.clicRightDesc = clicRightDesc;
+	}
+}

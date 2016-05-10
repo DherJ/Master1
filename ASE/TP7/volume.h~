@@ -1,0 +1,26 @@
+/**
+KNAPIK Christopher - DHERSIN Jérome 
+TP6 ASE - 4 novembre 2014 
+**/
+
+
+#ifndef VOLUME_H_INCLUDED
+#define VOLUME_H_INCLUDED
+
+
+extern char volume_type_name[3][10];
+
+//extern void execute(const char *name);
+//extern void boucleExec(void);
+extern void list();
+extern void new();
+extern void delete();
+extern void testSB();
+extern void saveMBR();
+extern void saveMBRandExit();
+extern void do_xit();
+extern void xit();
+extern void help();
+extern void commandError();
+
+#endif

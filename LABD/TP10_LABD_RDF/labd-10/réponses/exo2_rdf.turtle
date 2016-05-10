@@ -1,0 +1,11 @@
+@prefix conc:<http://www.labd.com/exo2/concepts> .
+@prefix inst:<http://www.labd.com/exo2/instances> .
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+
+inst:Boby conc:thought _:bnode1.
+_:bnode1 rdf:subject inst:Leon;
+                rdf:object inst:malade;
+				rdf:predicate rdf:type.

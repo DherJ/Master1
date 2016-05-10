@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<sparql xmlns='http://www.w3.org/2005/sparql-results#'>
+<head>
+<variable name='x'/>
+<variable name='age'/>
+</head>
+<results>
+<result>
+<binding name='x'><uri>http://www.inria.fr/2007/09/11/humans.rdfs-instances#Flora</uri></binding>
+<binding name='age'><literal>95</literal></binding>
+</result>
+<result>
+<binding name='x'><uri>http://www.inria.fr/2007/09/11/humans.rdfs-instances#Gaston</uri></binding>
+<binding name='age'><literal>102</literal></binding>
+</result>
+<result>
+<binding name='x'><uri>http://www.inria.fr/2007/09/11/humans.rdfs-instances#John</uri></binding>
+<binding name='age'><literal>37</literal></binding>
+</result>
+<result>
+<binding name='x'><uri>http://www.inria.fr/2007/09/11/humans.rdfs-instances#Karl</uri></binding>
+<binding name='age'><literal>36</literal></binding>
+</result>
+<result>
+<binding name='x'><uri>http://www.inria.fr/2007/09/11/humans.rdfs-instances#Pierre</uri></binding>
+<binding name='age'><literal>71</literal></binding>
+</result>
+<result>
+<binding name='x'><uri>http://www.inria.fr/2007/09/11/humans.rdfs-instances#William</uri></binding>
+<binding name='age'><literal>42</literal></binding>
+</result>
+</results>
+</sparql>

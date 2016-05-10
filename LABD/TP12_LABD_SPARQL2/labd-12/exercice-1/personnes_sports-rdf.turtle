@@ -1,0 +1,7 @@
+@prefix sps: <http://www.labd.org/2015/sport/schema#> .
+@prefix spi: <http://www.labd.org/2015/sport/instance#> .
+@prefix hms: <http://www.inria.fr/2007/09/11/humans.rdfs-instances#> .
+
+hms:Harry sps:pratique spi:Football , spi:Tennis .
+hms:Catherine sps:pratique spi:Football , spi:Basket .
+hms:Laura sps:pratique spi:Basket .

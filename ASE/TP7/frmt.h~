@@ -1,0 +1,12 @@
+/**
+KNAPIK Christopher - DHERSIN Jérome 
+TP6 ASE - 4 novembre 2014 
+**/
+
+#ifndef FRMT_H_INCLUDED
+#define FRMT_H_INCLUDED
+
+void format(const unsigned int val);
+int frmt(int argc, char **argv);
+
+#endif

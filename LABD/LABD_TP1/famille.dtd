@@ -1,0 +1,15 @@
+
+<!ELEMENT  famille (nom,personne+)>
+<!ELEMENT  nom (CDATA)>
+<!ELEMENT  personne (prenom,age,(poids-kg,poids-lb,taille)*)>
+<ATTLIST personne 
+	pnumber CDATA #REQUIRED
+	mere CDATA #IMPLIED
+	pere CDATA #IMPLIED
+	>	
+<!ELEMENT  prenom (CDATA)>
+<!ELEMENT  age (CDATA)>
+<!ELEMENT  poids-kg (CDATA)>
+<!ELEMENT  poids-lb (CDATA)>
+<!ELEMENT  taille (CDATA)>
+

@@ -1,0 +1,120 @@
+package tp.main;
+
+import java.util.List;
+
+public class Main {
+	
+	static int m, n, i, j;
+	static boolean game = false;
+	static boolean f127 = false;
+	static boolean naive = false;
+	static boolean dynamic = false;
+	static boolean withSym = false;
+	static int MAX;
+	
+	public static void parseCommandLine(String[] args) {
+		int result [] = new int [4];
+		String[] parts;
+		for(String s : args) {
+			parts = s.split("=");
+			switch(parts[0]) {
+			case "-naive":
+				naive = true;
+				break;
+			case "-dynamic":
+				dynamic = true;
+				break;
+			case "-sym":
+				withSym = true;
+				break;
+			case "-f127":
+				f127 = true;
+				break;
+			case "-game" :
+				game = true;
+				break;
+			case "-m" :
+				m = Integer.parseInt(parts[1]);
+				break;
+			case "-n" :
+				n = Integer.parseInt(parts[1]);
+				break;
+			case "-i" :
+				i = Integer.parseInt(parts[1]);
+				break;
+			case "-j" :
+				j = Integer.parseInt(parts[1]);
+				break;
+			}
+		}
+	}
+
+	
+	public static void main(String[] args) {
+		// format of the arguments for the execution : -m=? -n=? -i=? -j=?
+		System.out.print("Args: ");
+		for(String s : args) System.out.print(s + " ");
+		parseCommandLine(args);
+		
+		MAX = Math.max(m, n);
+		
+		if(naive)
+			testNaive();
+		else if(dynamic)
+			testDynamic();
+		else if(withSym)
+			testDynamicWithSym();
+		else if(f127)
+			testFunctionFindValue127();
+		else
+			launchGraphicGame();
+	}
+	
+	static public void launchGraphicGame(){
+		Game game = new Game(m, n, i, j);
+		game.beginGame();
+	}
+	
+	static public void testFunctionFindValue127(){
+		System.out.println("\nStart looking for value 127 in 127x127 table...");
+		int[][][][] tab = new int [128][128][128][128];
+		Tablet t = new Tablet(m,n,i,j,tab);
+		long begin = System.nanoTime();
+		List<Quadruple> list = t.getQuadraEgalVal(127);
+		long end = System.nanoTime();
+		for(Quadruple q : list) {
+			System.out.println(q.toString());
+		}
+		System.out.println("Time: " + ((end-begin)*Math.pow(10, -9)) + "s");
+	}
+	
+	static public void testNaive(){
+		System.out.println("\nStart naive function with ("+m+","+n+","+i+","+j+")...");
+		int[][][][] tab = new int [MAX][MAX][MAX][MAX];
+		Tablet test = new Tablet(m, n, i, j, tab);
+		long begin = System.nanoTime();
+		int naive = test.f(m, n, i, j);
+		long end = System.nanoTime();
+		System.out.println("Naive function: " + naive + "\ttime: " + ((end-begin)*Math.pow(10, -9)) + "s" + " \tcmpt:" + test.getCmp());
+	}
+	
+	static public void testDynamic(){
+		System.out.println("\nStart dynamic function without symmetries: ("+m+","+n+","+i+","+j+")...");
+		int[][][][] tab = new int [MAX][MAX][MAX][MAX];
+		Tablet test = new Tablet(m, n, i, j, tab);
+		long begin = System.nanoTime();
+		int dynamic = test.noSym(m, n, i, j);
+		long end = System.nanoTime();
+		System.out.println("Dynamic function: " + dynamic + "\ttime: " + ((end-begin)*Math.pow(10, -9)) + "s" + " \tcmpt:" + test.getCmpNoSym());
+	}
+	
+	static public void testDynamicWithSym(){
+		System.out.println("\nStart dynamic function with symmetries: ("+m+","+n+","+i+","+j+")...");
+		int[][][][] tab = new int [MAX][MAX][MAX][MAX];
+		Tablet test = new Tablet(m, n, i, j, tab);
+		long begin = System.nanoTime();
+		int withSym = test.withSym(m, n, i, j);
+		long end = System.nanoTime();
+		System.out.println("Dynamic function with sym: " + withSym + "\ttime: " + ((end-begin)*Math.pow(10, -9)) + "s" + " \tcmpt:" + test.getCmpNoSym());
+	}
+}

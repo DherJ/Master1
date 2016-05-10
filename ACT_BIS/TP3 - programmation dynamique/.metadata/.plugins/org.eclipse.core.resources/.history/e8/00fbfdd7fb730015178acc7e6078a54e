@@ -1,0 +1,47 @@
+package tp.main;
+
+public class Quadruple {
+	private int m, n, i, j, val;
+	
+	public Quadruple(int _m, int _n, int _i, int _j, int _val){
+		m = _m;
+		n = _n; 
+		i = _i;
+		j = _j;
+		val = _val;
+	}
+
+	public int getM() {
+		return m;
+	}
+
+	public void setM(int m) {
+		this.m = m;
+	}
+
+	public int getN() {
+		return n;
+	}
+
+	public void setN(int n) {
+		this.n = n;
+	}
+
+	public int getI() {
+		return i;
+	}
+
+	public void setI(int i) {
+		this.i = i;
+	}
+
+	public int getJ() {
+		return j;
+	}
+
+	public void setJ(int j) {
+		this.j = j;
+	}
+	
+	
+}

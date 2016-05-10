@@ -1,0 +1,43 @@
+/**
+KNAPIK Christopher - DHERSIN Jérome 
+TP6 ASE - 4 novembre 2014 
+**/
+
+
+#ifndef BLOC_H_INCLUDED
+#define BLOC_H_INCLUDED
+
+#define SUPER_MAGIC 0xF4B    /* identifie un superBloc */
+#define SUPER 0
+
+
+static int current_vol; /* variable qui correspond au volume courrant sur lequel on travail */
+static struct superBloc_s current_super;  /* structure superBloc qui correspond au volume courrant */
+
+
+	/* structure d'un bloc vide présent dans un volume */
+struct freeBloc_s {
+	unsigned int freebloc_nb_free;
+	unsigned int freebloc_next;          /*  = 0 si il n'y a pas de bloc suivant  */
+};	
+
+	/* structure du bloc comportant les informations des bloc d'un volume */
+struct superBloc_s {
+
+	int super_magic;
+	char super_name[32];
+	unsigned int super_first_free_bloc;
+	unsigned int super_nb_free;
+};
+
+
+	/* Prototypes des fonctions */
+extern void init_super(unsigned int vol);
+extern int load_super(unsigned int vol);
+extern void save_super();
+extern unsigned int new_bloc();
+extern void free_bloc(unsigned int bloc);
+extern void test_superbloc();
+
+
+#endif

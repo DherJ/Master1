@@ -1,0 +1,12 @@
+@prefix ns0: <http://www.labd.org/2015/voitures/schema#> .
+
+<http://www.labd.org/2015/voitures/data#vo001>
+  a <http://www.labd.org/2015/voitures/schema#Voiture> ;
+  ns0:conducteur <http://www.labd.org/2015/voitures/data#p101> .
+
+<http://www.labd.org/2015/voitures/data#vo002>
+  ns0:conducteur <http://www.labd.org/2015/voitures/data#p102> ;
+  a ns0:Voiture .
+
+<http://www.labd.org/2015/voitures/data#p102> a ns0:Personne .
+<http://www.labd.org/2015/voitures/data#p101> a ns0:Personne .

@@ -1,0 +1,109 @@
+library("EBImage")
+source("rdfSegmentation.R")
+
+
+allFacesName="allFaces.png";
+allFaces=rdfReadGreyImage(allFacesName);
+
+# création de stackedFaces :
+# Empilement des visages 40x33 dans une matrice stackedFaces 40x33x400
+# Attention, exécution possiblement longue ~30 sec, pas de panique...)
+# numLignes, numColonnes, numFaces
+
+
+# Remplit une 'matrice 3D' (en vérité, un array) avec les
+# valeurs contenues dans le data. C'est une fonction qui
+# s'adresse tout particulièrement au TP10 - 11 de RDF :)
+fillStack <- function (data, d1, d2, d3)
+{
+	data <- t(imageData(data));
+	stackedFaces <- array(rep (0, d1*d2*d3), c(d1, d2, d3));
+
+	for (i in 0:19)
+	{
+		for (j in 0:19)
+		{
+        	stackedFaces[,, (i*20 + j + 1)] = data[(1+i*d1) : ((i+1)*d1), (1+j*d2) : ((j+1)*d2)];
+    	}
+	}
+
+	print ("End of filling");
+	return (stackedFaces);
+}
+
+
+fill <- function (data, filled, f, indice)
+{
+	for (i in 1:40)
+	{
+		for (j in 1:33)
+		{
+			filled [i,j,indice] <- data[i,j,f]
+		}
+	}
+	
+	return (filled)
+}
+
+
+separateData <- function (data)
+{
+	test <- array(rep (0, 40*33*400), c(40, 33, 400))
+	app <- array(rep (0, 40*33*400), c(40, 33, 400))
+	i <- 1
+	j <- 1
+
+	for (f in 1:400)
+	{
+		x <- sample (1:2, 1)
+		if (x == 1)
+		{
+			test <- fill(data, test, f, i)
+			i <- i+1
+		}
+		else
+		{
+			app <- fill(data, app, f, j)
+			j <- j+1
+		}
+	}	
+
+	print ("End of separation")
+	display(test)
+	display(app)
+	return (list(app = app, test = test))
+}
+
+
+entropie <- function (data)
+{
+	# Création matrice pour les visages
+	mat = matrix(rep(0, 40*33*400), c(40, 33, 400))
+	# On stocke chaque visage
+	colnames(mat) = liste_noms
+
+	h <- rep (0, 10)
+	sum <- rep(0, 40)
+
+	for (i in 1:40)
+	{
+		for (j in i:10)
+		{
+			h[i] = length(mat[i,][mat[i,]==1]) / 400;
+		}		
+	}
+
+	h <- -(log(h^h)) - (log ((1-h)^(1-h)))
+
+	# Meilleur pixel de décision
+	pixel <- which.max(h)
+
+	# On sépare en deux selon ce pixel
+	list(px = pixel, white = data[mat[pixel, data]==1], black = data[mat[pixel, data]!=1])
+}
+
+
+faceStack <- fillStack(allFaces, 40, 33, 400);
+list <- separateData (faceStack);
+
+

@@ -1,0 +1,25 @@
+# KNAPIK Christopher - DHERSIN Jérome 
+# TP4 ASE - 7 octobre 2014
+
+
+
+# compilation complète
+TP4ASE: main.o create_ctx.o
+	gcc -g -m32 -o TP4ASE main.o create_ctx.o
+
+hw.o : hw.c hw.h
+	gcc -g -m32 -o hw.o -c hw.c 
+
+create_ctx.o: create_ctx.c create_ctx.h
+	gcc -g -m32 -o create_ctx.o -c create_ctx.c
+
+main.o: main.c create_ctx.h
+	gcc -g -m32 -o main.o -c main.c 
+ 
+# clean
+clean:
+	rm -rf *.bak rm -rf *.o
+ 
+# cleanall
+cleanall: clean
+	rm -rf TP4ASE

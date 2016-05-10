@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Ce sont les item qui ont un type occases ou neufs -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:complexType name="tSotck">
+	        	<xs:sequence>
+	            		<xs:element name="occases" type="tOccaz"/>
+			<xs:element name="neufs" type="tNeufs"/>
+	        	</xs:sequence>
+	        	<xs:attribute name="nom" type="xs:string" />
+	  </xs:complexType>
+	    	
+    	<xs:complexType name="tOccaz">
+    		<xs:sequence>
+    			<xs:element name="item" type="tItemOccaz" minOccurs = "0" maxOccurs = "unbounded"/>
+    		</xs:sequence>
+    	</xs:complexType>
+    	
+    	<xs:complexType name="tNeufs">
+    		<xs:sequence>
+    			<xs:element name="item" type="tItemNeuf" minOccurs = "0" maxOccurs = "unbounded"/>
+    		</xs:sequence>
+    	</xs:complexType>
+    	
+    	<xs:complexType name="tItemNeuf">
+    		<xs:sequence>
+    			<xs:element name="marque" type="xs:string"/>
+    			<xs:element name="modele" type="xs:string"/>
+    		</xs:sequence>
+    		<xs:attribute name="prix" type="xs:positiveInteger"/>
+    	</xs:complexType>
+    	
+    	<xs:complexType name="tItemOccaz">
+    		<xs:complexContent>
+        			<xs:extension base="tItemNeuf">
+            				<xs:sequence>
+    					<xs:element name="annee" type="xs:gYear"/>
+    				</xs:sequence>
+        			</xs:extension>
+    		</xs:complexContent>
+    	</xs:complexType>
+
+	<xs:element  name="stock" type="tSotck" />
+	<xs:element name="occases" type="tOccaz" />
+	<xs:element name="neufs" type="tNeufs" />
+	<xs:element name="item" />
+		
+</xs:schema>

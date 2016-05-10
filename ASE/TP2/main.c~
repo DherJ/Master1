@@ -1,0 +1,17 @@
+/**
+KNAPIK Christopher - DHERSIN Jérome 
+TP2 ASE - 30 septembre 2014 
+**/
+
+
+#include"switch_ctx.h"
+
+
+int main(int argc, char *argv[]){ 
+	ctx_ping = create_ctx(16384, f_ping, NULL);
+	ctx_pong = create_ctx(16384, f_pong, NULL);
+	ctx_pang = create_ctx(16384, f_pang, NULL);
+	yield();
+
+	exit(EXIT_SUCCESS);
+}

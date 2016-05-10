@@ -1,0 +1,70 @@
+package tp.main;
+
+import java.util.List;
+
+public class Main {
+	
+	static int m, n, i, j;
+	static boolean game = false;
+	static boolean f127 = false;
+	static boolean naive = false;
+	static boolean dynamic = false;
+	static boolean withSym = false;
+	
+	public static void parseCommandLine(String[] args) {
+		int result [] = new int [4];
+		String[] parts;
+		for(String s : args) {
+			parts = s.split("=");
+			switch(parts[0]) {
+			case "-f127":
+				f127 = true;
+				break;
+			case "-game" :
+				game = true;
+				break;
+			case "-m" :
+				m = Integer.parseInt(parts[1]);
+				break;
+			case "-n" :
+				n = Integer.parseInt(parts[1]);
+				break;
+			case "-i" :
+				i = Integer.parseInt(parts[1]);
+				break;
+			case "-j" :
+				j = Integer.parseInt(parts[1]);
+				break;
+			}
+		}
+	}
+
+	
+	public static void main(String[] args) {
+		// format of the arguments for the execution : -m=? -n=? -i=? -j=?
+		System.out.print("Args: ");
+		for(String s : args) System.out.print(s + " ");
+		parseCommandLine(args);
+		
+		
+		testFunctionFindValue127(127, 127, 50, 50);
+	}
+	
+	static public void launchGraphicGame(int m, int n, int i, int j){
+		Game game = new Game(m, n, i, j);
+		game.beginGame();
+	}
+	
+	static public void testFunctionFindValue127(int m, int n, int i, int j){
+		System.out.println("\nStart looking for value 127 in 127x127 table...");
+		int[][][][] tab = new int [128][128][128][128];
+		Tablet t = new Tablet(m,n,i,j,tab);
+		long begin = System.nanoTime();
+		List<Quadruple> list = t.getQuadraEgalVal(127);
+		long end = System.nanoTime();
+		for(Quadruple q : list) {
+			System.out.println(q.toString());
+		}
+		System.out.println("Time: " + ((end-begin)*Math.pow(10, -9)) + "s");
+	}
+}

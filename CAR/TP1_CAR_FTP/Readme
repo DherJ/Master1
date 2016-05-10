@@ -1,0 +1,18 @@
+Readme
+
+Serveur FTP Florian Malapel / Antonin Noel
+
+Ce programme crée un serveur FTP utilisant le port 2000 pour communiquer avec des clients, le serveur gère les requête USER, PASS, QUIT, LIST, RETR, STOR,  PWD, CWD et CDUP.
+Le serveur choisit le répertoire de travail de la machine comme racine, il est impossible d’accèder aux fichier situé avant le répertoire de travail pour des raison de sécurité.
+Les requètes SYST, FEAT, TYPE, PASV et PORT pour répondre a certaines commandes automatisée de Filezila.
+
+Détail des requetes :
+USER login			->	Envoie une requete de connection avec le login
+PASS password		->	Envoie le password
+QUIT				-> demande la fermeture des sockets
+LIST				-> demande la liste des fichiers et dossiers dans le repertoire courant
+RETR				-> demande la recuperation du fichier
+STOR				-> demande le stock d'un fichier
+PWD					-> renvoie les infos ( le nom ) du repertoire courant
+CWD repository		-> demande le changement de repertoire courant pour le repertoir entré en parametre
+CDUP				-> demande le retour au repertoire supérieur

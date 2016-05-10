@@ -1,0 +1,20 @@
+library ('EBImage')
+source ('rdfSegmentation.R')
+source('TP8.R')
+
+load(file='iris-tp8.RData')
+
+im1 <- rdfReadGreyImage ("rdf-2-classes-texture-1.png")
+im2 <- rdfReadGreyImage ("rdf-2-classes-texture-1-text.png")
+
+# rdfPlotDonnees()
+# dev.new()
+# rdfPlotKmeans()
+
+
+
+
+# rdfAfficheObs(im1, im2)
+# rdfKmeansNoInit (im1, im2)
+# rdfBinarisationKmeans (im1, im2)
+

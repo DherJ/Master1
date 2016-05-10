@@ -1,0 +1,28 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://www.labd.org/2015/cours/schema#estSuiviPar>
+  rdfs:domain <http://www.labd.org/2015/cours/schema#Cours> ;
+  a rdfs:Property ;
+  rdfs:range rdf:Seq .
+
+<http://www.labd.org/2015/cours/schema#nom>
+  a rdfs:Property ;
+  rdfs:domain <http://www.labd.org/2015/cours/schema#Cours>, 
+    <http://www.labd.org/2015/cours/schema#Personne> ;
+  rdfs:range rdf:Literal .
+
+<http://www.labd.org/2015/cours/schema#aCommeEnseignant>
+  a rdfs:Property ;
+  rdfs:domain <http://www.labd.org/2015/cours/schema#Cours> ;
+  rdfs:range <http://www.labd.org/2015/cours/schema#Enseignant> .
+
+<http://www.labd.org/2015/cours/schema#Personne> a rdfs:Class .
+<http://www.labd.org/2015/cours/schema#Cours> a rdfs:Class .
+<http://www.labd.org/2015/cours/schema#Etudiant>
+  a rdfs:Class ;
+  rdfs:subClassOf <http://www.labd.org/2015/cours/schema#Personne> .
+
+<http://www.labd.org/2015/cours/schema#Enseignant>
+  rdfs:subClassOf <http://www.labd.org/2015/cours/schema#Personne> ;
+  a rdfs:Class .

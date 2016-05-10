@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<championnat division="1" saison="2003-2004" xsi:noNamespaceSchemaLocation="championnat.xsd" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<journee id="1" date="01/08/2003">
+		<rencontre domicile="Auxerre" exterieur="Nice" scoreD="1" scoreE="2" />
+		<rencontre domicile="Guingamp" exterieur="Marseille" scoreD="0" scoreE="1" />
+		<rencontre domicile="Lens" exterieur="LeMans" scoreD="0" scoreE="0" />
+		<rencontre domicile="Lille" exterieur="Lyon" scoreD="1" scoreE="0" />
+		<rencontre domicile="Metz" exterieur="Ajaccio" scoreD="0" scoreE="1" />
+		<rencontre domicile="Monaco" exterieur="Bordeaux" scoreD="2" scoreE="0" />
+		<rencontre domicile="Montpellier" exterieur="Rennes" scoreD="1" scoreE="1" />
+		<rencontre domicile="ParisSG" exterieur="Bastia" scoreD="0" scoreE="0" />
+		<rencontre domicile="Sochaux" exterieur="Nantes" scoreD="2" scoreE="1" />
+		<rencontre domicile="Toulouse" exterieur="Strasbourg" scoreD="1" scoreE="1" />
+	</journee>
+	<journee id="2" date="08/08/2003">
+		<rencontre domicile="Bastia" exterieur="Metz" scoreD="0" scoreE="2" />
+		<rencontre domicile="Bordeaux" exterieur="Montpellier" scoreD="0" scoreE="1" />
+		<rencontre domicile="LeMans" exterieur="Ajaccio" scoreD="0" scoreE="1" />
+		<rencontre domicile="Lille" exterieur="ParisSG" scoreD="1" scoreE="0" />
+		<rencontre domicile="Lyon" exterieur="Monaco" scoreD="3" scoreE="1" />
+		<rencontre domicile="Marseille" exterieur="Auxerre" scoreD="1" scoreE="0" />
+		<rencontre domicile="Nantes" exterieur="Lens" scoreD="2" scoreE="0" />
+		<rencontre domicile="Nice" exterieur="Sochaux" scoreD="1" scoreE="0" />
+		<rencontre domicile="Rennes" exterieur="Toulouse" scoreD="1" scoreE="0" />
+		<rencontre domicile="Strasbourg" exterieur="Guingamp" scoreD="2" scoreE="0" />
+	</journee>
+	<journee id="3" date="16/08/2003">
+		<rencontre domicile="Ajaccio" exterieur="Nantes" scoreD="1" scoreE="3" />
+		<rencontre domicile="Auxerre" exterieur="Strasbourg" scoreD="3" scoreE="2" />
+		<rencontre domicile="Guingamp" exterieur="Bordeaux" scoreD="1" scoreE="3" />
+		<rencontre domicile="LeMans" exterieur="Nice" scoreD="1" scoreE="1" />
+		<rencontre domicile="Lens" exterieur="Marseille" scoreD="2" scoreE="1" />
+		<rencontre domicile="Metz" exterieur="ParisSG" scoreD="0" scoreE="1" />
+		<rencontre domicile="Monaco" exterieur="Bastia" scoreD="2" scoreE="0" />
+		<rencontre domicile="Montpellier" exterieur="Lyon" scoreD="0" scoreE="2" />
+		<rencontre domicile="Sochaux" exterieur="Rennes" scoreD="1" scoreE="1" />
+		<rencontre domicile="Toulouse" exterieur="Lille" scoreD="0" scoreE="3" />
+	</journee>
+	<journee id="4" date="23/08/2003">
+		<rencontre domicile="Bastia" exterieur="Montpellier" scoreD="1" scoreE="0" />
+		<rencontre domicile="Bordeaux" exterieur="Auxerre" scoreD="2" scoreE="0" />
+		<rencontre domicile="Lille" exterieur="Metz" scoreD="1" scoreE="1" />
+		<rencontre domicile="Lyon" exterieur="Toulouse" scoreD="0" scoreE="0" />
+		<rencontre domicile="Marseille" exterieur="Sochaux" scoreD="2" scoreE="0" />
+		<rencontre domicile="Nantes" exterieur="LeMans" scoreD="1" scoreE="0" />
+		<rencontre domicile="Nice" exterieur="Ajaccio" scoreD="2" scoreE="2" />
+		<rencontre domicile="ParisSG" exterieur="Monaco" scoreD="2" scoreE="4" />
+		<rencontre domicile="Rennes" exterieur="Guingamp" scoreD="0" scoreE="0" />
+		<rencontre domicile="Strasbourg" exterieur="Lens" scoreD="0" scoreE="1" />
+	</journee>
+	<!-- d'autres journées sont à venir... -->
+</championnat>

@@ -1,0 +1,6 @@
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?x ?pointure
+WHERE {
+	?x a humans:Person .
+	?x humans:shoesize ?pointure
+      }

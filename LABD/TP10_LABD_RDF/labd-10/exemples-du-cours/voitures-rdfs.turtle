@@ -1,0 +1,20 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://www.labd.org/2015/voitures/schema#Vehicule>
+  rdfs:comment "La classe vehicule" ;
+  a rdfs:Class .
+
+<http://www.labd.org/2015/voitures/schema#conducteur>
+  rdfs:range <http://www.labd.org/2015/voitures/schema#Personne> ;
+  a rdf:Property ;
+  rdfs:domain <http://www.labd.org/2015/voitures/schema#Vehicule> .
+
+<http://www.labd.org/2015/voitures/schema#Voiture>
+  a rdfs:Class ;
+  rdfs:comment "La classe voiture" ;
+  rdfs:subClassOf <http://www.labd.org/2015/voitures/schema#Vehicule> .
+
+<http://www.labd.org/2015/voitures/schema#Personne>
+  a rdfs:Class ;
+  rdfs:comment "La classe personne" .

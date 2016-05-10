@@ -1,0 +1,213 @@
+package tp.main;
+
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
+public class GameFrame extends JFrame implements MouseListener {
+
+	private static final long serialVersionUID = 1L;
+	private int m, n, i, j;
+	private int frameWidth, frameHeight, squareSize;
+	private int tableX_begin, tableY_begin, tableWidth, tableHeight;
+	private Game game;
+	private JLabel playerLabel;
+	private JLabel scoreLabel;
+	private JLabel nbCoupsBotLabel;
+	private JLabel nbCoupsJoueurLabel; 
+	private final String NBCOUPSBOTSTRING = "Coups joué du Bot : ";
+	private final String NBCOUPSJOUEURSTRING = "Coups joué du Joueur : ";
+	private final String SCORESTRING = "Score de la configuration courante : ";
+	private Legend legend;
+	private boolean wellPlayed = false;
+	private int x_cut, y_cut;
+	
+	public GameFrame(Game _game) {
+		frameWidth = _game.getM() * 100;
+		frameHeight = _game.getN() * 70;
+		initFrame();
+		initValues(_game);
+	}
+	
+	public void initValues(Game _game) {
+		game = _game;
+		m = game.getM();
+		n = game.getN();
+		i = game.getI();
+		j = game.getJ();
+		squareSize = 40;
+		tableWidth = m * squareSize;
+		tableHeight = n * squareSize;
+		tableX_begin = (frameWidth/2) - (tableWidth/2);
+		tableY_begin = 30;
+	}
+	
+	public void initFrame() {
+		legend = new Legend(frameWidth, frameHeight);
+		this.setTitle("Chocolate table");
+		this.setSize(frameWidth, frameHeight);
+		JPanel panel = new JPanel(null);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		playerLabel = new JLabel("Tour de ");
+		playerLabel.setBounds(10, 50, 100, 20);
+		scoreLabel = new JLabel(SCORESTRING + "00");
+		scoreLabel.setBounds(10, 70, 250, 20);
+		nbCoupsBotLabel = new JLabel(NBCOUPSBOTSTRING + "00");
+		nbCoupsBotLabel.setBounds(10, 90, 150, 20);
+		nbCoupsJoueurLabel = new JLabel(NBCOUPSJOUEURSTRING + "00");
+		nbCoupsJoueurLabel.setBounds(10, 110, 170, 20);
+		panel.add(playerLabel);
+		panel.add(scoreLabel);
+		panel.add(nbCoupsBotLabel);
+		panel.add(nbCoupsJoueurLabel);
+		panel.add(legend.getClicLeftDesc());
+		panel.add(legend.getClicRightDesc());
+		panel.setBackground(Color.white);
+		setContentPane(panel);
+		this.setVisible(true);
+		this.addMouseListener(this);
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		Graphics2D g2 = (Graphics2D)g;
+		createTable(g2);
+		drawBadCase(g2);
+		if(game.isBot()) {
+			playerLabel.setText("Tour du Bot");
+			playerLabel.setForeground(new Color(100, 0, 0));
+		}
+		else {
+			playerLabel.setText("Tour du Joueur");
+			playerLabel.setForeground(new Color(0, 0, 100));
+		}
+		nbCoupsBotLabel.setText(NBCOUPSBOTSTRING + game.getNbCoupsBot());
+		nbCoupsBotLabel.setForeground(new Color(100, 0, 0));
+		nbCoupsJoueurLabel.setText(NBCOUPSJOUEURSTRING + game.getNbCoupsJoueur());
+		nbCoupsJoueurLabel.setForeground(new Color(0, 0, 100));
+		scoreLabel.setText(SCORESTRING + game.getScore());
+		g.drawImage(legend.getIconRightClic(), 180, frameHeight-50, null);
+		g.drawImage(legend.getIconLeftClic(), 180, frameHeight-140, null);
+		
+		if(wellPlayed){
+			drawBadCase(g2);
+		}
+	}
+	
+	public void drawCut(Graphics2D g){
+		g.fillRect(tableX_begin, 
+				tableY_begin, i*(squareSize), n*squareSize);
+	}
+	
+	public void createTable(Graphics2D g) {
+		g.drawRect(tableX_begin, tableY_begin, tableWidth, tableHeight);
+		for(int i = 1; i <= m; i++) {
+			g.drawLine(tableX_begin+(squareSize*i), tableY_begin, tableX_begin+(squareSize*i), tableY_begin + tableHeight);
+		}
+		for(int i = 1; i <= n; i++) {
+			g.drawLine(tableX_begin, tableY_begin+(squareSize*i), tableX_begin+tableWidth, tableY_begin+(squareSize*i));
+		}
+	}
+	
+	public void drawBadCase(Graphics2D g) {
+		g.setColor(Color.black);
+		g.fillRect(tableX_begin+(i*squareSize), tableY_begin+(j*squareSize), squareSize, squareSize);
+	}
+	
+	public void congrats(boolean win) {
+		if(win)
+			JOptionPane.showMessageDialog(null, "Congratulation, you've won !", "End of the game", JOptionPane.INFORMATION_MESSAGE);
+		else 
+			JOptionPane.showMessageDialog(null, "GAME OVER", "End of the game", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		int x = (e.getX()), 
+				y = (e.getY());
+		int minTop, maxBottom, minLeft, maxRight;
+		for(int w = 0; w<m; w++) {
+			for(int z = 0; z<n; z++) {
+				minTop = tableY_begin + (z*squareSize);
+				maxBottom = tableY_begin +  (z+1)*squareSize;
+				minLeft = tableX_begin + (w*squareSize);
+				maxRight = tableX_begin + (w+1)*squareSize;
+				if(x < maxRight && x > minLeft && y < maxBottom && y > minTop && !game.isBot()) {
+					if(i>w && SwingUtilities.isLeftMouseButton(e)) {
+						game.setM(m-(w+1));
+						game.setI(i-(w+1));
+						this.game.setScore(game.getTab()[game.getM()][game.getN()][game.getI()][game.getJ()]);
+						game.setNbCoupsJoueur(game.getNbCoupsJoueur()+1);
+//						game.setBot(true);
+//						initValues(game);
+//						repaint();
+					}
+					else if(i<w && SwingUtilities.isLeftMouseButton(e)) {
+						game.setM(w);
+						game.setNbCoupsJoueur(game.getNbCoupsJoueur()+1);
+						this.game.setScore(game.getTab()[game.getM()][game.getN()][game.getI()][game.getJ()]);
+//						game.setBot(true);
+//						initValues(game);
+//						repaint();
+					}
+					else if(j>z && SwingUtilities.isRightMouseButton(e)) {
+						game.setN(n-(z+1));
+						game.setJ(j-(z+1));
+						game.setNbCoupsJoueur(game.getNbCoupsJoueur()+1);
+						this.game.setScore(game.getTab()[game.getM()][game.getN()][game.getI()][game.getJ()]);
+//						game.setBot(true);
+//						initValues(game);
+//						repaint();
+					}
+					else if(j<z && SwingUtilities.isRightMouseButton(e)) {
+						game.setN(z);
+						game.setNbCoupsJoueur(game.getNbCoupsJoueur()+1);
+						this.game.setScore(game.getTab()[game.getM()][game.getN()][game.getI()][game.getJ()]);
+//						game.setBot(true);
+//						initValues(game);
+//						repaint();
+					}
+					wellPlayed = true;
+					x_cut = w;
+					y_cut = z;
+				}
+			}
+		}
+		
+	}
+	
+	public void refresh(Game _game) {
+		initValues(_game);
+		repaint();
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		game.setBot(true);
+		repaint();
+		wellPlayed = false;
+		initValues(game);
+		repaint();
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {}
+
+	@Override
+	public void mouseExited(MouseEvent e) {}
+}

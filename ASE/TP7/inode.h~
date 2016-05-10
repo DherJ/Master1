@@ -1,0 +1,25 @@
+##ifndef INODE_H_INCLUDE
+#define INODE_H_INCLUDE
+
+#define N_DIRECT 2
+#define BLOC_NULL 0
+
+enum inode_type_e {IT_FILE, IT_DIR, IT_OTHER};
+struct inode_s{
+	enum inode_type_e 	in_type;
+	unsigned 		in_size; // en octets
+	unsigned		in_direct[N_direct];
+	unsigned		in_indirect;
+	unsigned		in_d_indirect;
+};
+
+void read_inode(unsigned int inumber, struct inode_s *inode);
+void write_inode(unsigned int inumber, struct inode_s *inode);
+unsigned int create_inode(enum inode_type_e type);
+int delete_inode(unsigned int inumber);
+unsigned int vbloc_of_Fbloc(inumber, inumber, bool_t allocate);
+unsigned int vbloc_of_Fbloc(inumber, inumber, bool_t allocate);
+
+
+
+#endif

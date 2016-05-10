@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc xsi:noNamespaceSchemaLocation="ex1.xsd"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+	<heure>15:00:00</heure>
+	<nombre>2</nombre>
+	<string>jo</string>
+	<image>png</image>
+	<isbn>1234567891234</isbn>
+</doc>

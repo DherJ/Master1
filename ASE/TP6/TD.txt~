@@ -1,0 +1,169 @@
+#################
+#		Exercice 1		#
+#################
+
+
+
+Pour lire un secteur (secteur	c s), il faut utiliser la liste de commandes matérielles suivantes :
+1 - SEEK		~ mettre c s -> HDA_DATAREGS
+						octet poids fort C -> HDA_CMDREG
+						octet poids faible C -> HDA_CMDREG+1
+				~ mettre CMD_SEEK -> HDA_CMDREG
+				~ attente HDA_IRQ
+
+2 - READ		~ mettre 1 -> HDA_DATAREG
+				~ CMD_READ -> HDA_CMDREG
+				~ attente HDA_IRQ
+
+3 - exploiter les données HDA_MASTER_BUFFER
+
+en C :
+
+1 -
+
+static go_to_sector(c,s) {
+	// Vérifier C et S
+	_out(HDA_DATAREG, (c>>8) &0xFF);
+	_out(HDA_DATAREG+1, c &0xFF);
+	_out(HDA_DATAREG+2, (s>>8) &0xFF);
+	_out(HDA_DATAREG+3, s &0xFF);
+	_out(HDA_CMDREG, CMD_SEEK);
+	_sleep(HDA_IRQ);
+
+
+3 -
+
+	out(HDACMDREG, CMD_DSKNFO);
+	int sector.size = _in(HDA_DATAREGS+4) <<8 + _in(HDA_DATAREGS+5);
+
+	#define SECTOR_SIZE 1024
+	static int check_hda()
+		- lire via DSKNFO variable sector_size
+		- vérifier sector_size == SECTOR_SIZE sinon -> recompiler avec SECTOR_SIZE=...
+
+
+
+dmps.c 
+	Affiche un sector
+
+drive.c
+
+drive.h
+	check_hda()
+	read_sector(c, s, char* buffer)
+	read_sector(c, s, n, char* buffer)	
+	write_sector()
+	write_sector_n()
+	format_sector()
+
+	static go_to_sector(c, s)
+
+main() 
+	char buffer[SECTOR_SIZE]
+	read_sector(0, 0, buffer)
+	print_buffer(buffer, SECTOR_SIZE)
+
+
+
+#################
+#		Exercice 4		#
+#################
+
+
+au max 8 partitions
+
+Partition = ensemble de secteurs contigus (groupés)
+(premier cylindre, premier secteur) ---> nombre secteur
+type de partition : 
+	- primaire = données
+	- secondaire = possiblement redécoupés en partition
+	- autre = ? on y touchera pas
+
+MBR (master boot record)
+secteur(0,0) un secteur du disque <-> mémoriser l'organisation du disque
+
+
+structure MBR
+
+struct vol_s {
+	unsigned int vol_firstCyl;
+	unsigned int vol_firstSec;
+	unsigned int vol_nbSec;	
+	enum vol_type_e vol_type;
+};
+
+struct mbr_s{
+	struct vol_s mbr_vol[MAX_VOL];	// de 0 à 8 
+	unsigned mbr_n_vol;
+	unsigned mbr_magic;	
+};
+
+struct mbr_s mbr;
+
+enum vol_type_e { VOLT_PR, VOLT_SND, VOLT_OTHER };
+
+
+
+< démarrage >
+...
+vérifier magic 
+load_MBR()
+charger le MBR en mémoire ---> ranger dans mbr
+
+<modification mbr>
+save_MBR()
+// vérifier si la taille de la variable ne dépasse par la taille d'un secteur
+sauver le MBR sur le disque
+
+
+load_MBR{	
+	unsigned char buf[SECTORSIZE]
+	if(sizeof(struct mbr_s)>SECTORSIZE){
+		//ARRET
+	}
+	read_sector(0, 0, buf);
+	memcpy(&mbr, buf, sizeof(struct mbr_s));
+	// ou read_sector_n(0, 0, &mbr, sizeof(struct mbr_s));
+	if(mbr.mbr_magic!=MBR_MAGIC){
+		mbr.mbr_n_vol=0;
+		mbr.mbr_magic=MBR_MAGIC;
+		puts("disque vierge, continuer ?");
+	}
+}
+
+save_MBR{
+	write_sector_n(0, 0, &mbr, sizeof(struct mbr_s));
+}
+
+
+bloc (vue du volume) = sector (vue du disque)
+read_bloc(vol, b, buffer) 
+vol, b ---> ? c,s
+
+		sec
+		0	|	1	|	2	|	3	|	4	|	5	|
+	    ______________________________________________
+cyl	0 |mbr	|		|		|		|		|		|
+	1 |		|		|		|		|		|	*	|
+	2 |		|	*	|		|		|		|		|
+	3 |		|		|		|		|		|		|
+
+volume 
+Fc 1
+Fs 3
+ns 7	
+
+bloc n°4
+s = (Fs + b)%MAX_SECTOR
+c = (Fc + (Fs+s)/MAX_SECTOR)
+	
+
+cylinder_of_bloc(vol, b)
+sector_of_bloc(vol, b)
+
+Fs 
+	mbr.mbr_vol[vol]firstSec
+Fc
+	mbr.mbr_vol[vol]firstCyl
+
+

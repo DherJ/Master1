@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:ns0="http://www.labd.com/exo1/"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+
+  <rdf:Description rdf:about="http://www.labd.com/exo1/instancesCitroen">
+    <rdf:type rdf:resource="http://www.labd.com/exo1/conceptsMarque"/>
+    <ns0:conceptsnom>Citroen</ns0:conceptsnom>
+    <ns0:conceptsfondee>1991</ns0:conceptsfondee>
+  </rdf:Description>
+
+  <rdfs:Class rdf:about="http://www.labd.com/exo1/conceptsVoiture">
+  </rdfs:Class>
+
+  <rdfs:Property rdf:about="http://www.labd.com/exo1/conceptsmarque">
+    <rdfs:domain rdf:resource="http://www.labd.com/exo1/conceptsVoiture"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#literal"/>
+  </rdfs:Property>
+
+</rdf:RDF>

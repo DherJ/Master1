@@ -1,0 +1,414 @@
+/****************************************************\
+ *    Dhersin Jérôme - Knapik Christopher      *
+/****************************************************\
+
+
+Exercice 1 : 
+
+Question 1 :
+
+Reqête : 
+
+SELECT ?x ?t WHERE
+{
+ ?x rdf:type ?t
+}
+
+Résultat :  33 résultats
+Récupère tous les triplets dont l'élément x correspond à un type t.
+
+x -> nom de l'élément 
+t -> type de l'élément
+
+Retrouver le type de John : 
+SELECT ?x ?t
+WHERE
+{ 
+ ?x rdf:type ?t
+ FILTER regex (?x, "John"  )
+}
+
+Résultat : 
+<?xml version="1.0" ?>
+<sparql xmlns='http://www.w3.org/2005/sparql-results#'>
+<head>
+<variable name='x'/>
+<variable name='t'/>
+</head>
+<results>
+<result>
+<binding name='x'><uri>http://www.inria.fr/2007/09/11/humans.rdfs-instances#John</uri></binding>
+<binding name='t'><uri>http://www.inria.fr/2007/09/11/humans.rdfs#Person</uri></binding>
+</result>
+</results>
+</sparql>
+
+
+Question 2 :
+
+Récupère tous les éléments Personne qui ont un élément hasSpouse.
+
+Il y a 6 résultats : 
+
+<Person rdf:ID="Karl">
+	<hasSpouse rdf:resource="#Catherine"/>
+	<hasFriend rdf:resource="#Sophie"/>
+	<shoesize>7</shoesize>
+	<age>36</age>
+	<shirtsize>9</shirtsize>
+	<trouserssize>40</trouserssize>
+</Person>
+
+<Person rdf:ID="William">
+	<hasSpouse rdf:resource="#Laura"/>
+	<shoesize>10</shoesize>
+	<age>42</age>
+	<trouserssize>46</trouserssize>
+	<shirtsize>13</shirtsize>
+	<name>William</name>
+</Person>
+
+ect...
+
+
+Question 3 :
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?x ?age
+WHERE {
+	  ?x humans:age ?age . 
+       FILTER (xsd:integer(?age) > 20)
+}
+
+	  
+Qestion 4 :
+
+	1) 
+	
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?x ?pointure
+WHERE {
+	?x a humans:Person .
+	?x humans:shoesize ?pointure
+}
+
+	  
+	2) 
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?x ?pointure
+WHERE {
+	?x a humans:Person 
+	OPTIONAL{ ?x humans:shoesize ?pointure  
+}
+ 
+	3) 
+	
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?x ?pointure
+WHERE {
+	?x a humans:Person 
+	OPTIONAL{
+		?x humans:shoesize ?pointure
+		FILTER (xsd:integer(?pointure) > 8)	
+	} 
+}
+
+	
+	4)
+	
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?x ?pointure ?shirtsize
+WHERE {
+	{
+		?x a humans:Person 
+		?x humans:shoesize ?pointure
+		FILTER (xsd:integer(?pointure) > 8)	
+	} UNION
+	  {	
+		?x a humans:Person 
+		?x humans:shirtsize ?shirtsize
+		FILTER (xsd:integer(?shirtsize) > 21)	
+	  } 
+}	
+	
+Question 5 :
+
+	
+PREFIX inst:<http://www.inria.fr/2007/09/11/humans.rdfs-instances#>	
+DESCRIBE inst:John
+
+	
+Question 6 :
+
+		1) 
+		
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?p ?e
+WHERE {
+			{
+				?p humans:hasChild ?e
+			} UNION {
+							?e humans:hasParent ?p
+						}
+		}		
+		
+		2)
+		
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?x
+WHERE {  
+				{
+					?x humans:hasChild ?y
+				} UNION {
+								?y humans:hasParent ?x
+							}					
+			}		
+		
+		3)
+		
+			Il y a 6 résultats dont 2 fois Gaston car il a 2 enfants.
+		
+		4)
+		
+		Il n'y a plus que 5 résultats car on a enlever une occurence de gaston.
+		
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT distinct ?x
+WHERE { 
+				{
+					?x humans:hasChild ?y
+				} UNION {
+								?y humans:hasParent ?x
+							}					
+			}			
+		
+		5)
+		
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?x 
+WHERE {
+				?x a humans:Man
+				OPTIONAL { ?x humans:hasChild ?y }
+				FILTER ( !bound(?y) )
+			}		
+		
+		6)
+		
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?x ?nameChild
+WHERE {
+ 	?x a humans:Woman
+	?x humans:hasSpouse ?y
+	 OPTIONAL{ ?x humans:hasChild ?nameChild }
+ }		
+ 
+ 
+ Question 7 :
+ 
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?x1 ?x2
+WHERE {
+	?personne1 humans:shirtsize ?size1
+	?personne2 humans:shirtsize ?size2
+	FILTER ( xsd:integer(?size1) = xsd:integer(?size2) && xsd:string(?personne1) < xsd:string(?personne2) )
+ }
+ 
+ Question 8 : 
+ 
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+CONSTRUCT {
+						?x humans:hasParent ?y . 
+					}
+WHERE {
+				?y humans:hasChild ?x  . 
+			}
+ 
+ 
+ Question 9 : 
+ 
+ 
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?x 
+WHERE {
+				{
+					?x a humans:Person
+				} UNION {
+								?x humans:Man ?y
+								FILTER ( !bound(?y) )
+							}
+			}
+ 
+Cette requête retourne tous les éléments Person et Woman du fichier et donc aucun élément Men. 	
+	
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Exercice 2 :
+ 
+
+ Question 2 :
+ 
+SELECT ?class
+WHERE {
+				?class a rdfs:Class
+}
+ 
+ Question 3 :
+ 
+SELECT distinct ?element
+WHERE {
+    ?element rdfs:subClassOf ?data
+}
+ 
+ Question 4 : 
+ 
+SELECT ?lf
+WHERE {
+    ?t rdfs:label "shoe size"@en .
+    ?t rdfs:label ?lf .
+    FILTER ( lang(?lf) = 'fr' )
+}
+ 
+ Question 5 :
+ 
+SELECT *
+WHERE {
+				?t rdfs:label "person"@en .
+				?t rdfs:label ?syn .
+				FILTER ( ?syn != "person"@en && lang(?syn) = 'en' )
+			}
+	
+ Question 6 : 
+
+SELECT *
+WHERE {
+	{
+		?s rdfs:label "size"@en .
+		?s rdfs:label ?ls .
+		?s rdfs:comment ?cs .
+		FILTER ( lang(?ls) = 'en' && lang(?cs) = 'en' )
+	} UNION {
+					?h rdfs:label "homme"@en .
+					?h rdfs:label ?lh .
+					?h rdfs:comment ?ch .
+					FILTER ( lang(?lh) = 'en' && lang(?ch) = 'en' )
+				}
+}
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Exercice 3 :
+
+
+Question 1 :
+
+	1)
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+
+SELECT ?animal
+WHERE {
+		?animal a humans:Animal
+}
+--> Aucuns résultats
+
+
+SELECT ?personne
+WHERE {
+		?personne a humans:Person
+}
+
+	--> Retourne tous les éléments Person
+	
+	2)
+	
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+
+SELECT ?animal
+WHERE {
+		?animal a humans:Animal
+}
+--> Retourne toutes les peronnes instanciées dans le fichier rdf.
+
+Retourne les élements Men, Woman, Person car : 
+	- Man est une subClasse de Male et Person et Male et Person sont des subClass de Animal
+	- Woman est une subClasse de Female et Person et Female et Person sont des subClass de Animal
+	- Person est une subClasse de Animal
+	
+Donc si on a un objet Person | Men | Woman on a un objet Animal par définition des types.
+
+SELECT ?personne
+WHERE {
+		?personne a humans:Person
+}
+
+	--> Retourne tous les éléments Person 
+	
+Question 2 :
+
+	1)
+	
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+
+SELECT ?personne ?epouse
+WHERE {
+		?personne a humans:Male
+		?personne humans:hasSpouse ?epouse
+}
+	
+	--> 1 résultat
+	
+<binding name='personne'><uri>http://www.inria.fr/2007/09/11/humans.rdfs-instances#Harry</uri></binding>
+<binding name='epouse'><uri>http://www.inria.fr/2007/09/11/humans.rdfs-instances#Sophie</uri></binding>
+
+		
+	2)
+	 --> 2 résultats
+	 
+<binding name='personne'><uri>http://www.inria.fr/2007/09/11/humans.rdfs-instances#Harry</uri></binding>
+<binding name='epouse'><uri>http://www.inria.fr/2007/09/11/humans.rdfs-instances#Sophie</uri></binding>
+
+<binding name='personne'><uri>http://www.inria.fr/2007/09/11/humans.rdfs-instances#Karl</uri></binding>
+<binding name='epouse'><uri>http://www.inria.fr/2007/09/11/humans.rdfs-instances#Catherine</uri></binding>
+
+
+	Les éléments hasFather et hasMother sont des sous classes de hasParent et hasAncestor, qui est appartient au Animal.
+	Harry car Harry est un élément Men.
+	Karl car Lucas définit comme un Men a un père Karl, et l'élément hasFather se réfère à un élement Male comme indiqué dans le rdfs ;
+	
+	Lucas étant un "Man", et est relié a Karl et à Catherine, le lien est fait entre Karl (ancètre d'un "Man" et époux de Catherine).
+	
+Question 3 :
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?lecturer ?type
+WHERE {
+	?lecturer a humans:Lecturer
+	?lecturer a ?type	
+}
+
+--> 7 résultats
+
+Laura elle, est définie comme Person, est l'épouse de William, c'est donc une femme (Female) et une animale
+
+Question 4 :
+
+
+PREFIX humans: <http://www.inria.fr/2007/09/11/humans.rdfs#>
+SELECT ?y
+WHERE {
+		?x humans:hasAncestor ?y
+}
+
+--> 4 résultats
+
+Laura
+Catherine
+John
+Sophie
+
+Laura car Laura est la mère de Catherine et Catherine est la mère de Lucas. Donc il y a relation d'ancètre.
+John car John est le père de Mark et John a pour parent Sophie donc il y a également relation d'ancètre.
+Sophie est la mère de John et Jonh a un fils Mark.

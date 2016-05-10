@@ -1,0 +1,12 @@
+/**
+KNAPIK Christopher - DHERSIN Jérome 
+TP6 ASE - 4 novembre 2014 
+**/
+
+#ifndef DMPS_H_INCLUDED
+#define DMPS_H_INCLUDED
+
+void dump(char *buffer, const unsigned int buffer_size, const unsigned int ascii, const unsigned int hexa);
+int dmps(int argc, char** argv);
+
+#endif

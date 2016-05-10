@@ -1,0 +1,19 @@
+/**
+KNAPIK Christopher - DHERSIN Jérome 
+TP1 ASE - 23 septembre 2013 
+**/
+
+
+les différentes fonctions utilisées :
+
+- la fonction afficherInfoRegistre affiche les valeurs des registres esp/ebp.
+
+- la fonction try récupère les valeurs des registres esp/ebp et retourne ensuite la fonction passée en argument.
+
+- la fonction throw permet le retour au contexte précédent l'éxecution de mul grâce aux valeurs récupérées par la fonction try.
+
+- la fonction mul calcule le produit d'une liste d'entiers de manière récursive.  
+
+- la fonction appelSuccessif affiche nb fois les valeurs des registres esp/ebp (nb étant donné en argument)
+
+- la fonction appelRecursif affiche nb fois les valeurs des registres esp/ebp mais de manière récursive. Ces valeurs changent d'ailleurs à chaque appel.

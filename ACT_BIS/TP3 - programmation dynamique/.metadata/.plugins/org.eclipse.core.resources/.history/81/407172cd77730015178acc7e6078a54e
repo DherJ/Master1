@@ -1,0 +1,50 @@
+package tp.main;
+
+public class Main {
+	
+	static int maxNeg = 0, maxPos = 0, cmp = 0;
+	static boolean initMin = false;
+	static boolean initMax = false;
+	static boolean initMaxPos = false;
+	static boolean initMaxNeg = false;
+	
+	public static int [] parseCommandLine(String[] args) {
+		int result [] = new int [4];
+		String[] parts;
+		for(String s : args) {
+			parts = s.split("=");
+			switch(parts[0]) {
+			case "-m" :
+				result[0] = Integer.parseInt(parts[1]);
+				break;
+			case "-n" :
+				result[1] = Integer.parseInt(parts[1]);
+				break;
+			case "-i" :
+				result[2] = Integer.parseInt(parts[1]);
+				break;
+			case "-j" :
+				result[3] = Integer.parseInt(parts[1]);
+				break;
+			}
+		}
+		return result;
+	}
+
+	
+	public static void main(String[] args) {
+		// format of the arguments for the execution : -m=? -n=? -i=? -j=?
+		// arguments[0] = m, arguments[1] = n, arguments[2] = i, arguments[3] = j
+		int arguments [] = parseCommandLine(args);
+		int m = arguments[0];
+		int n = arguments[1];
+		int i = arguments[2];
+		int j = arguments[3];
+		System.out.println("m = " + arguments[0]);
+		System.out.println("n = " + arguments[1]);
+		System.out.println("i = " + arguments[2]);
+		System.out.println("j = " + arguments[3]);
+		
+		Game game = new Game(10, 7, 7, 3);
+	}
+}

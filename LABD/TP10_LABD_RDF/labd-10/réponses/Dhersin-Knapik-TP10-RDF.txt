@@ -1,0 +1,36 @@
+/****************************************************\
+ *    Dhersin Jérôme - Knapik Christopher      *
+/****************************************************\
+
+
+Exercice 4 : 
+
+Les 10 triplets de stages.rdf
+
+Personne type Class          Person -> Classe
+Tuteur      type Person        Tuteur -> Person
+Tuteur      type Class
+Stagiaire  type Person        Stagiaire -> Person
+Stagiaire  type Class
+encadre domain Tuteur       Tuteur  -------(encadre)------>  Stagiaire
+encadre range Stagiaire      Tuteur  -------(encadre)------>  Stagiaire
+encadre type property
+Ali type Tuteur
+Ali type Personne
+Louis type Stagiaire
+Louis type Personne
+knows type Property
+
+
+Validator :
+
+1  	http://www.labd.org/stages#Personne 	http://www.w3.org/1999/02/22-rdf-syntax-ns#type     	http://www.w3.org/2000/01/rdf-schema#Class
+2  	http://www.labd.org/stages#Stagiaire 	http://www.w3.org/1999/02/22-rdf-syntax-ns#type 	    http://www.w3.org/2000/01/rdf-schema#Class
+3  	http://www.labd.org/stages#Stagiaire 	http://www.w3.org/2000/01/rdf-schema#subClassOf  	http://www.labd.org/stages#Personne
+4  	http://www.labd.org/stages#Tuteur   	http://www.w3.org/1999/02/22-rdf-syntax-ns#type     	http://www.w3.org/2000/01/rdf-schema#Class
+5  	http://www.labd.org/stages#Tuteur   	http://www.w3.org/2000/01/rdf-schema#subClassOf   	http://www.labd.org/stages#Personne
+6  	http://www.labd.org/stages#encadre 	http://www.w3.org/1999/02/22-rdf-syntax-ns#type     	http://www.w3.org/1999/02/22-rdf-syntax-ns#Property
+7  	http://www.labd.org/stages#encadre 	http://www.w3.org/2000/01/rdf-schema#domain        	http://www.labd.org/stages#Tuteur
+8  	http://www.labd.org/stages#encadre 	http://www.w3.org/2000/01/rdf-schema#range               http://www.labd.org/stages#Stagiaire
+9  	http://www.labd.org/stages#encadre 	http://www.w3.org/2000/01/rdf-schema#subPropertyOf 	http://xmlns.com/foaf/0.1/knows
+10 	http://www.labd.org/stages#Ali        	http://www.labd.org/stages#encadre                        	http://www.labd.org/stages#Louis

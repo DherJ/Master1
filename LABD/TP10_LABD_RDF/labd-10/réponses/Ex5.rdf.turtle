@@ -1,0 +1,56 @@
+@prefix inst: <http://www.labd.com/exo5/instance/>.
+@prefix concept: <http://www.labd.com/exo5/concept/>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix sport: <http://www.labd.com/exo5/sport/>.
+@prefix detail: <http://www.labd.com/exo5/detail/>.
+
+
+inst:football a sport:Football .
+sport:Football detail:oppose "Equipes";
+	detail:nbEquipe "2";
+	detail:nbJoueurParEquipe "11";
+	detail:lieu "stade";
+	detail:objectif "Mettre un ballon sphérique dans le but adverse, sans utiliser les bras et le faire plus souvent que l'autre equipe";
+	detail:terrain "90 à 120 mètres de long sur 45 à 90 mètres de large";
+	detail:durree "90min";
+	detail:mi-temps "45min";
+	detail:pause "15min";
+	detail:prolongation "Deux fois quinze minutes";
+	detail:casEgalite "Lors d'un match de coupe, au terme des prolongations les tirs au but départagent les deux formations".
+
+inst:basketball a sport:Basket .
+sport:Basket detail:seJoue "A la main";
+	detail:oppose "Equipes";
+	detail:nbEquipe "2";
+	detail:nbJoueurParEquipE "5";
+	detail:maxRemplacants "5 à 7";
+	detail:remplacant "Chaque équipe peut remplacer un ou plusieurs joueurs pendant les arrêts de jeu et les temps-morts";
+	detail:but "Marquer plus de panier que l'autre équipe";
+	detail:nbPeriodes "4";
+	detail:dureePeriodes "10min".
+
+
+# SPORT
+sport:Sport a rdfs:Class ;
+    rdfs:label "sport" .
+
+# SPORTCO
+sport:SportCo a rdfs:Class ;
+    rdfs:label "sport collectif" ;
+    rdfs:comment "Sport qui oppose des équipes entre elles, attribue des titres à l'équipe entière" ;
+    rdfs:subClassOf sport:Sport .
+
+# SPORTIND
+sport:SportIndividuel a rdfs:Class ;
+    rdfs:label "sport individuel" ;
+    rdfs:comment "Sport qui oppose des individues entre eux, attribue des titres individuels" ;
+    rdfs:subClassOf sport:Sport .
+
+# FOOTBALL
+sport:Football a rdfs:Class;
+	rdfs:subClassOf sport:SportCo .
+
+# BASKETBALL
+sport:Basket a rdfs:Class;
+	rdfs:subClassOf sport:SportCo .

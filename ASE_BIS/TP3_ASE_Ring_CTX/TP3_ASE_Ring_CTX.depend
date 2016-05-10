@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1443444913 source:c:\users\jérôme\desktop\tp3_ase_ring_ctx\function.c
+	"header.h"
+
+1443444896 c:\users\jérôme\desktop\tp3_ase_ring_ctx\header.h
+	<stdlib.h>
+	<stdio.h>
+	<assert.h>
+
+1443444924 source:c:\users\jérôme\desktop\tp3_ase_ring_ctx\main.c
+	"header.h"
+
+1443444913 source:e:\université\master informatique\1ere année\semestre 1\ase_2\tp\tp3_ase_ring_ctx\function.c
+	"header.h"
+
+1443444896 e:\université\master informatique\1ere année\semestre 1\ase_2\tp\tp3_ase_ring_ctx\header.h
+	<stdlib.h>
+	<stdio.h>
+	<assert.h>
+
+1443445329 source:e:\université\master informatique\1ere année\semestre 1\ase_2\tp\tp3_ase_ring_ctx\main.c
+	"header.h"
+

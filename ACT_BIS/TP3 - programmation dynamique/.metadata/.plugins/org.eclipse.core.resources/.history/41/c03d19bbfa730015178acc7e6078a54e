@@ -1,0 +1,142 @@
+package tp.main;
+
+public class Game {
+	
+	private final int MAX = 101;
+	private int m, n, i, j;
+	private int[][][][] tab, tab2; 
+	private boolean bot = true;
+	private GameFrame frame;
+	
+	public Game(int _m, int _n, int _i, int _j){
+		m = _m;
+		n = _n;
+		i = _i;
+		j = _j;
+		
+		tab = new int[MAX][MAX][MAX][MAX];
+		frame = new GameFrame(this);
+		beginGame();
+//		Tablet test = new Tablet(m, n, i, j, tab);
+//		long begin = System.nanoTime();
+//		int resultNoSym = test.noSym(m, n, i, j);
+//		long end = System.nanoTime();
+//		System.out.println("Dynamic whitout sym: " + resultNoSym + "\ttime: " + ((end-begin)*Math.pow(10, -6)) + "ms" + " \tcmpt:" + test.getCmpNoSym());
+//		
+//		tab2 = new int[MAX][MAX][MAX][MAX];
+//		Tablet test2 = new Tablet(m, n, i, j, tab2);
+//		begin = System.nanoTime();
+//		int resultWithSym = test2.withSym(m, n, i, j);
+//		end = System.nanoTime();
+//		System.out.println("Dynamic with sym: " + resultWithSym + "\ttime: " + ((end-begin)*Math.pow(10, -6)) + "ms" + " \tcmpt:" + test2.getCmpSym());
+//		
+//		begin = System.nanoTime();
+//		int resultWithNaive = test2.f(m, n, i, j);
+//		end = System.nanoTime();
+//		System.out.println("Naive: " + resultWithNaive + "\ttime: " + ((end-begin)*Math.pow(10, -6)) + "ms" + " \tcmpt:" + test2.getCmp());
+	}
+	
+	
+	public void beginGame(){
+		while(true){
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			if(m == 1 && n == 1){
+				System.out.print(m + "&" + n);
+				if(bot)
+					frame.congrats(true);
+				else 
+					frame.congrats(false);
+				
+				frame.dispose();
+				break;
+			} else {
+				if(bot)
+					doBotBestMove();
+			}
+		}
+		
+	}
+
+	public void doBotBestMove(){
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		Tablet currentTable = new Tablet(m,n,i,j, tab);
+		Quadruple bestMove = currentTable.getBestMoveWithSym(m, n, i, j);
+		setM(bestMove.getM());
+		setN(bestMove.getN());
+		setI(bestMove.getI());
+		setJ(bestMove.getJ());
+		bot = false;
+		frame.refresh(this);
+	}
+
+	public int getM() {
+		return m;
+	}
+
+
+	public void setM(int m) {
+		this.m = m;
+	}
+
+
+	public int getN() {
+		return n;
+	}
+
+
+	public void setN(int n) {
+		this.n = n;
+	}
+
+
+	public int getI() {
+		return i;
+	}
+
+
+	public void setI(int i) {
+		this.i = i;
+	}
+
+
+	public int getJ() {
+		return j;
+	}
+
+
+	public void setJ(int j) {
+		this.j = j;
+	}
+
+
+	public int[][][][] getTab() {
+		return tab;
+	}
+
+
+	public void setTab(int[][][][] tab) {
+		this.tab = tab;
+	}
+
+
+	public boolean isBot() {
+		return bot;
+	}
+
+
+	public void setBot(boolean bot) {
+		this.bot = bot;
+	}
+	
+	
+	
+	
+}

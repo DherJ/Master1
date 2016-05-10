@@ -1,0 +1,105 @@
+# Yassine BADACHE
+# Jérôme DHERSIN
+# Fichier contenant les macros
+# correspondant aux réponses du TP5
+
+
+# Question2: Probabilité à priori des classes.
+#
+# Macro permettant de calculer la probabilité d'une classe
+# Elle prend en paramètre l'image globale (ici "2classes_100_100_8bits.png")
+# et l'image correspondant à la classe (ici "2classes_100_100_8bits_omega.png").
+#
+# nbins est le niveau de précision de l'histogramme.
+rdfCalculPrioriClasse <- function (img, img_classe, nbins)	{
+# On calcule les histogrammes de chacune des deux images
+	h <- hist (as.vector (img), freq=FALSE, breaks = seq (0, 1, 1 / nbins))
+	hclasse <- hist (as.vector (img_classe), freq=FALSE, breaks = seq (0, 1, 1 / nbins))
+
+# On effectue les calculs de somme
+	Ntotal = sum (h$counts)
+	Nclasse = sum (hclasse$counts)
+
+# On calcule finalement la probabilité
+	p_omega = Nclasse / Ntotal
+}
+
+
+
+
+# Question3: Probabilité conditionnelle.
+#
+# Macro permettant le calcul des probabilités conditionnelles
+# Elle prend en paramètre l'image globale (ici "2classes_100_100_8bits.png"),
+# l'image correspondant à la classe (ici "2classes_100_100_8bits_omega.png")
+# et le niveau de gris souhaité pour le calcul.
+#
+# nbins est le niveau de précision de l'histogramme.
+rdfCalculProbaConditionnelle <- function (img, ndg, nbins)	{
+# On calcule l'histogramme de l'image
+	h <- hist (as.vector (img), freq=FALSE, breaks = seq (0, 1, 1 / nbins))
+
+# On effectue les calculs de somme
+	Ntotal = sum (h$counts)
+
+# On calcule les probabilités conditionnelles
+	P_conditionnelle <- h$counts[ndg]/Ntotal
+}
+
+
+
+
+# Question4: Probabilité d'erreur
+#
+# Macro permettant de calculer les probabilités d'erreur
+# Elle prend en paramètre les deux images concernées
+# et le niveau de gris permettant de déterminer la précision
+# de l'histogramme, calculé avec les images.
+# L'image de référence est utilisée ici pour calculer
+# les probabilités à priori des deux classes
+rdfProbaErreur <- function (image_ref, image1, image2, nbins)	{
+# On calcule l'histogramme de l'image
+	him1 <- hist (as.vector (image1), freq=FALSE, breaks = seq (0, 1, 1 / nbins))
+	him2 <- hist (as.vector (image2), freq=FALSE, breaks = seq (0, 1, 1 / nbins))
+
+# On déclare les tableaux nécessaires pour les sommes
+	somme1 = 0:nbins-1
+	somme2 = 0:nbins-1
+	erreur = 0:nbins-1
+
+# Recherche du minimum
+	minimum_erreur = 1
+	seuil_minimum_erreur = 0
+
+# On parcourt chaque seuil
+	for (X in 1:nbins-1) {
+	# On effectue la première somme sur l'histogramme de la première classe
+		somme1[X+1] = sum (him1$density[(X+1):256]) / sum (him1$density[1:256])
+		somme1[X+1] = somme1[X+1] * rdfCalculPrioriClasse (image_ref, image1, nbins)
+
+	# On effectue ensuite la seconde somme sur l'histogramme de la seconde classe
+		somme2[X+1] = sum (him2$density[1:(X+1)]) / sum (him2$density[1:256])
+		somme2[X+1] = somme2[X+1] * rdfCalculPrioriClasse (image_ref, image2, nbins)
+
+	# Et on calcule à partir de ces résultats l'erreur
+		erreur[X+1] = somme1[X+1] + somme2[X+1]
+
+	# seuil corrrespondant à l'erreur minimale
+	if (erreur[X+1] < minimum_erreur)
+		seuil_minimum_erreur = X
+	if (erreur[X+1] < minimum_erreur)
+		minimum_erreur = erreur[X+1]
+	}
+	
+	print ("Minimum de P(E / ^X :")
+	print (minimum_erreur)
+
+	print ("Taux d'erreur de classification pour probabilité minimale d'erreur :")
+	print (seuil_minimum_erreur)
+
+	# Seuillage automatique de l'image
+	seuil_auto_img <- (image - seuil_minimum_erreur/255) >= 0
+	# Affichage
+	display (seuil_auto_img, "Image avec valeur du seuil optimale")
+
+}
