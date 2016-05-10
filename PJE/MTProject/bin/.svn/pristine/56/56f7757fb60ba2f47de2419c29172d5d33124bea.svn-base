@@ -1,0 +1,66 @@
+package widget;
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
+
+import mygeom.Path;
+import mygeom.Point2;
+import tuio.MTedt;
+
+public class MTSurface extends JPanel {
+	
+	public MTedt handler;
+	public ArrayList<Path> listChemin;
+	
+	public MTSurface() {
+		super();
+		handler = new MTedt(this);
+		listChemin = new ArrayList<Path>();
+	}
+	
+	public boolean checkPathExist(int idCursor){
+		if( listChemin.size() > idCursor )
+			return true;
+		else return false;
+	}
+
+	public synchronized void addCursor(int id, Point2 p){
+		if( checkPathExist(id) ){
+			listChemin.get(id).addPoint(p);
+		}
+		else {
+			Path path = new Path(id);
+			path.addPoint(p);
+			listChemin.add(path);
+		}
+		repaint();
+	}
+	
+	public synchronized void updateCursor(int id, Point2 p){
+		listChemin.get(id).addPoint(p);
+		repaint();
+	}
+	
+	public synchronized void removeCursor(int id, Point2 p){
+		listChemin.get(id).removePoint(id);
+		listChemin.get(id).clear();
+		repaint();
+//		System.out.print("Delete ID: " + id + "\t|\t Coord(" + p.getX() + "," + p.getY() + ")\n");
+	}
+	
+	public void drawAll(Graphics2D g){
+		for(int i=0; i<listChemin.size(); i++){
+			listChemin.get(i).draw(g);
+		}
+	}
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		Graphics2D g2 = (Graphics2D) g;
+		drawAll(g2);
+	}
+
+}
