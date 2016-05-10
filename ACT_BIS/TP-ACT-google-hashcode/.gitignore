@@ -1,0 +1,27 @@
+*.class
+
+# folder settings
+.settings/*
+.settings
+
+# folder bin
+bin/*
+bin
+
+#folder
+data
+
+# solver's folder
+glpk-4.57
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# file .project
+.project
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
