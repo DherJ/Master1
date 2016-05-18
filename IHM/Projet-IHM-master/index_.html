@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Cacou</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="style/demo.css">
+    <link rel="stylesheet" href="style/header-user-dropdown.css">
+    <link rel="stylesheet" href="style/cacou.css">
+    <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+
+
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header-user-dropdown">
+
+        <div class="header-limiter">
+            <h1><a href="#">Calendar<span> Class</span></a></h1>
+
+            <nav>
+                <a href="#">Actualités</a>
+                <a href="#">Cours</a>
+                <a href="#">Calendrier <span class="header-new-feature">new</span></a>
+                <!--<a href="#">Roles <span class="header-new-feature">new</span></a>-->
+            </nav>
+
+            <div class="header-user-menu">
+                <img src="style/2.jpg" alt="User Image"/>
+                <ul>
+                    <li><a href="#">Mon profil</a></li>
+                    <li><a href="#">Mon compte</a></li>
+                    <li><a href="#" class="highlight">Déconnexion</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+
+    <div id="content">
+        <div class="newsBlock">
+            <h1 class="newsTitle"><span class="courseName">MATH</span> Noémie à commenté votre actualité</h1>
+            <h3 class="newsCmt"><span class="username">vous</span>Quelqu'u a pris note du cours d'hier matin ?</h3>
+            <h3 class="newsCmt dec"><span class="username">Noémie</span>Suffisait de venir au cours mon chou</h3>
+            <p class="newsCmt"><span class="username">vous</span>J'étais malade, tu m'envoie mes notes step</p>
+            <p class="newsCmt dec"><span class="username">Noémie</span>je les ai publiées sur le groupe ;)</p>
+        </div>
+    </div>
+
+
+
+    <!-- Header script -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var userMenu = $('.header-user-dropdown .header-user-menu');
+            userMenu.on('touchend', function(e){
+                userMenu.addClass('show');
+                e.preventDefault();
+                e.stopPropagation();
+            });
+            // This code makes the user dropdown work on mobile devices
+            $(document).on('touchend', function(e){
+                // If the page is touched anywhere outside the user menu, close it
+                userMenu.removeClass('show');
+            });
+        });
+    </script>
+
+
+</body>
+</html>

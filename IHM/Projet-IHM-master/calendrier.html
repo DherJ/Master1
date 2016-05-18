@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Cacou</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="style/demo.css">
+    <link rel="stylesheet" href="style/header-user-dropdown.css">
+    <link rel="stylesheet" href="style/cacou.css">
+    <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
+
+    <!-- Jquery -->
+    <script type="text/javascript" src="./assets/jquery.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="./assets/ui/themes/ui-lightness/jquery-ui-1.10.3.custom.min.css" >
+    <script type="text/javascript" src="./assets/ui/jquery-ui-1.10.3.custom.min.js"></script>
+
+    <!-- FullCalendar -->
+    <link type="text/css" rel="stylesheet" href="./assets/fullcalendar/fullcalendar.css" >
+    <script type="text/javascript" src="./assets/fullcalendar/fullcalendar.min.js"></script>
+
+    <!-- Calendar Gestionnary -->
+    <script type="text/javascript" src="./scripts/calendar.js"></script>
+    <script type="text/javascript" src="./scripts/ls_data.js"></script>
+
+    <style type="text/css">
+        body
+        {
+            text-align: center;
+            font-size: 14px;
+            font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+        }
+        #calendar
+        {
+            width: 900px;
+            margin: 0 auto;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header-user-dropdown">
+
+        <div class="header-limiter">
+            <h1><a href="#">Calendar<span> Class</span></a></h1>
+
+            <nav>
+                <a href="index.html">Actualités</a>
+                <a href="cours.html">Cours</a>
+                <a href="calendrier.html">Calendrier <span class="header-new-feature">new</span></a>
+                <!--<a href="#">Roles <span class="header-new-feature">new</span></a>-->
+            </nav>
+
+            <div class="header-user-menu">
+                <img src="style/2.jpg" alt="User Image"/>
+                <ul>
+                    <li><a href="#">Mon profil</a></li>
+                    <li><a href="#">Mon compte</a></li>
+                    <li><a href="#" class="highlight">Déconnexion</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+
+    <!--FullCalendar container div-->
+    <div id='calendar' style="margin-top: 20px; margin-bottom: 40px; padding: 20px; background-color: white;"></div>
+    <!--<button id="saveEvents">Save Calendar</button>-->
+    <!--Form edit-->
+    <div id="dialogEditEvent" style="display: none;">
+        <form id="editEvent">
+            <p>
+                <label for="name">Event name :</label>
+                <input id="name" type="text"/>
+            </p><p>
+            <label for="desc">Small description :</label>
+            <textarea id="desc"></textarea>
+        </p><p>
+            <input type="submit"/>
+        </p>
+        </form>
+    </div>
+
+
+    <!-- Header script --
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var userMenu = $('.header-user-dropdown .header-user-menu');
+            userMenu.on('touchend', function(e){
+                userMenu.addClass('show');
+                e.preventDefault();
+                e.stopPropagation();
+            });
+            // This code makes the user dropdown work on mobile devices
+            $(document).on('touchend', function(e){
+                // If the page is touched anywhere outside the user menu, close it
+                userMenu.removeClass('show');
+            });
+        });
+    </script>-->
+
+
+</body>
+</html>
